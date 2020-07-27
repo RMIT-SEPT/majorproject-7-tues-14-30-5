@@ -5,7 +5,7 @@
 ## Members
 * HADDARA, Youssef (s3793336)
 * LAM, Alan (s3436174)
-* SURNAME, GivenName (sXXXX)
+* ALKAFF, Hamed (s3708483)
 * SURNAME, GivenName (sXXXX)
 * SURNAME, GivenName (sXXXX)
 
