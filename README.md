@@ -6,7 +6,7 @@
 * HADDARA, Youssef (s3793336)
 * LAM, Alan (s3436174)
 * ALKAFF, Hamed (s3708483)
-* SURNAME, GivenName (sXXXX)
+* AMARAPALA, Gaveen (s3766914)
 * SURNAME, GivenName (sXXXX)
 
 ## Records
