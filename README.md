@@ -1,6 +1,6 @@
 # RMIT SEPT 2020 Major Project
 
-# Group 00
+# Group 7.TUES-14.30-5
 
 ## Members
 * HADDARA, Youssef (s3793336)
