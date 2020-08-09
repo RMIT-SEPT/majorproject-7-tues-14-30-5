@@ -1,8 +1,9 @@
 package com.rmit.sept.agme.bookingappbackend.model;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.util.Date;
 
 @Entity
