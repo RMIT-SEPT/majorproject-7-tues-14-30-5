@@ -4,30 +4,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Worker {
+public class User {
 
     @Id
-    private long id;
+    private String username;
     private String password;
-    private String workerName;
+
+    @NotBlank(message = "Name is required")
+    private String name;
     private String address;
     private String contactNo;
+    private String role;
 
     private Date created_At;
     private Date updated_At;
 
-    public Worker() {
+
+    public User() {
+
     }
 
-    public long getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -38,12 +44,12 @@ public class Worker {
         this.password = password;
     }
 
-    public String getWorkerName() {
-        return workerName;
+    public String getName() {
+        return name;
     }
 
-    public void setWorkerName(String workerName) {
-        this.workerName = workerName;
+    public void setName(String customerName) {
+        this.name = customerName;
     }
 
     public String getAddress() {
@@ -60,6 +66,14 @@ public class Worker {
 
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @PrePersist
