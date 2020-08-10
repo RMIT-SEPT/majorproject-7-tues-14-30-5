@@ -1,10 +1,13 @@
 package com.rmit.sept.agme.bookingappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -12,15 +15,18 @@ public class User {
 
     @Id
     private String username;
+    @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
+    @NotBlank(message = "Password required")
     private String password;
-
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name required")
     private String name;
     private String address;
+    @NotBlank(message = "Contact number required")
     private String contactNo;
     private String role;
-
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
 
