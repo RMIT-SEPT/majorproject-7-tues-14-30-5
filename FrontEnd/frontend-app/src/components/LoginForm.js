@@ -1,23 +1,54 @@
-import React from "react";
-import { Button, Form, Col } from 'react-bootstrap';
-function LoginForm() {
-    return (
-        <div className="col-md-5 col-md-offset-2">
-        <Form>
-            <Form.Row>
-                <Col>
-                    <Form.Control placeholder="First name" />
-                </Col>
-                <Col>
-                    <Form.Control placeholder="Last name" />
-                </Col>
-                <Button variant="primary" type="submit">
-                        Submit
-                </Button>
-            </Form.Row>
-        </Form>
-        </div>
-    );
-}
+import React, {Component} from "react";
+import { Button, Form } from 'react-bootstrap';
+import axios from 'axios';
 
-export default LoginForm;
+export default class LoginForm extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {username:'', password:""};
+        this.signIn = this.signIn.bind(this)
+        this.formChange = this.formChange.bind(this)
+    }
+    signIn(event)
+    {
+        const data = this.state;
+        axios.post('http://localhost:8080/api/user', data).then(r => console.log(r))
+        event.preventDefault()
+    }
+    formChange(event)
+    {
+        this.setState({
+            [event.target.name]:event.target.value
+        });
+    }
+
+
+    render() {
+        return (
+            <div className="col-md-5 col-md-offset-2">
+                <Form onSubmit={this.signIn} id="loginFormId">
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Row>
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control required name="username" value={this.state.username} onChange={this.formChange} type="username" placeholder="Username" />
+                        </Form.Row>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Row>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control required name="password" value={this.state.password} onChange={this.formChange} type="password" placeholder="Password" />
+                        </Form.Row>
+                    </Form.Group>
+
+                    <Button variant="success" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </div>
+        )
+
+    }
+
+}
