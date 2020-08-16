@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotBlank;
@@ -11,9 +12,10 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class User {
+ public class User {
 
     @Id
+    @Size(min = 6, max = 20, message = "name must be longer than 6 characters")
     private String username;
     @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
     @NotBlank(message = "Password required")
@@ -31,6 +33,11 @@ public class User {
 
 
     public User() {
+
+    }
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
 
     }
 

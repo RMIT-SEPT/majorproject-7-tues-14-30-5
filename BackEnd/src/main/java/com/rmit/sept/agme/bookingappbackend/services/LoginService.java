@@ -5,6 +5,7 @@ import com.rmit.sept.agme.bookingappbackend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 //import java.util.Iterator;
@@ -15,6 +16,8 @@ public class LoginService {
 
     @Autowired
     private UserRepository userRepository;
+
+    UserService  userService;
 
     /*
         Incomplete; I'm not sure if a standalone method like this is needed, feel free
@@ -37,16 +40,16 @@ public class LoginService {
      * @param password Password entered in login form
      * @return true if the entered login information has been successfully validated
      */
-    public boolean validateLogin(String username, String password) {
+    public boolean validateLogin(String username, String password, User user) {
         boolean validated = false;
 
-        if (userRepository.countUsers() >= 5) {
+        if (((ArrayList) userService.getUsers()).size() >= 5) {
             Optional<User> userOptional = userRepository.findById(username);
 
             if(userOptional.isPresent()) {
-                User foundUser = userOptional.get();
+                user = userOptional.get();
 
-                if (foundUser.getPassword().equals(password)) {
+                if (user.getPassword().equals(password)) {
                     validated = true;
                 }
             }
