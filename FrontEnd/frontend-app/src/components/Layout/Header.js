@@ -1,11 +1,9 @@
 import React, {Component} from "react";
-import { Navbar, Nav, NavLink } from "react-bootstrap";
-import "../../Header.css"
+import { Navbar, Nav} from "react-bootstrap";
 
 class Header extends Component {
     render() {
         return (
-            // <div className="container">
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">AGME</Navbar.Brand>
                 <Nav className="mr-auto">
@@ -14,11 +12,10 @@ class Header extends Component {
                     <Nav.Link href="/contact">Contact Us</Nav.Link>
                 </Nav>
                 <Nav className="ml-auto">
-                    <Nav.Link href="/login">Log In</Nav.Link>
+                    <Nav.Link href="/login" activeClassName="current">Log In</Nav.Link>
                     <Nav.Link href="/signup">Sign Up</Nav.Link>
                 </Nav>
             </Navbar>
-            // </div>
             
             
             
