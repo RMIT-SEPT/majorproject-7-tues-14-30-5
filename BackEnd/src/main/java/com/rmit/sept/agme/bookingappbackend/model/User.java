@@ -35,11 +35,18 @@ import java.util.Date;
     public User() {
 
     }
-    public User(String name, String password) {
-        this.name = name;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
 
     }
+    public User(String username, String password, String name, String contactNo) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.contactNo = contactNo;
+    }
+
 
     public String getUsername() {
         return username;
