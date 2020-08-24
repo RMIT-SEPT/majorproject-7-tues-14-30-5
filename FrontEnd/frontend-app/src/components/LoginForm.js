@@ -6,14 +6,20 @@ export default class LoginForm extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {username:'', password:""};
+        this.state = {
+		username:"",
+		password:""
+	};
         this.signIn = this.signIn.bind(this)
         this.formChange = this.formChange.bind(this)
     }
     signIn(event)
     {
-        const data = this.state;
-        axios.post('http://localhost:8080/api/user', data).then(r => console.log(r))
+        const data = {
+		username: this.state.username,
+		password: this.state.password
+	};
+        axios.post('http://localhost:8080/login', data).then(r => console.log(r)).catch(error => console.log(error));
         event.preventDefault()
     }
     formChange(event)
