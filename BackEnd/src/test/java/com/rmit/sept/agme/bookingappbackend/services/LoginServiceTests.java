@@ -20,33 +20,21 @@ import static org.mockito.Mockito.when;
 class LoginServiceTests {
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoginService loginService;
     @MockBean
     private UserRepository repository;
-    LoginService loginService = new LoginService();
-   // UserService userService = new UserService();
-
-    /*
-        checkEmptyDB might not need to be here; specifications state that the database must have
-        at least 5 customers in it. However, I do not know how to enforce it.
-     */
-//    @Test
-//    public void checkEmptyDB() {
-//        assertThat(loginService.validateLogin("someusername","somepassword")).isFalse();
-//    }
 
     @BeforeAll
     void setUp() {
-       // User user = new User();
-        User user = new User("aaaaa","qwe123");
-        User user2 = new User("aaaaaa","qwe123");
-        user.setName("user_person");
-        user.setPassword("password_person");
-
+        User user = new User("Username1","Password1","PersonName","ContactNo");
+        repository.save(user);
         userService.saveOrUpdateUser(user);
     }
 
     @Test
     public void passCredentialCheck() {
+        Assert.assertTrue(loginService.validateLogin("Username1", "Password1"));
        // when(repository.save(user2)).thenReturn(user2);
         //Assert.assertEquals(user, userService.addUser(user));
         //assertThat(loginService.validateLogin("user_person","password_person")).isTrue();
