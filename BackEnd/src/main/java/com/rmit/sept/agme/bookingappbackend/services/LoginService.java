@@ -23,8 +23,9 @@ public class LoginService {
      * @param password Password entered in login form
      * @return true if the entered login information has been successfully validated
      */
-    public boolean validateLogin(String username, String password) {
+    public User validateLogin(String username, String password) {
         boolean validated = false;
+        User user;
 
         //Debugging code primarily for LoginServiceTest - Look at running console when testing
         Iterable<User> all = userRepository.findAll();
@@ -36,14 +37,18 @@ public class LoginService {
         Optional<User> userOpt = userRepository.findById(username);
 
         //Debugging code primarily for LoginServiceTest- Look at running console when testing
-        if (!userOpt.isPresent()) {
-            System.out.println("\n=====\nRepository did not find a user\n=====\n");
-        }
+//        if (!userOpt.isPresent()) {
+//            System.out.println("\n=====\nRepository did not find a user\n=====\n");
+//        }
 
         if (userOpt.isPresent() && userOpt.get().getUsername().equals(username) && userOpt.get().getPassword().equals(password)) {
-            validated = true;
+            user = userOpt.get();
+            return userOpt.get();
+        } else {
+            System.out.println("\n=====\nRepository did not find a user\n=====\n");
+            return null;
         }
 
-        return validated;
+//        return user;
     }
 }

@@ -39,8 +39,12 @@ public class LoginController {
         }
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
-        Boolean login = loginService.validateLogin(username, password);
+        User user = loginService.validateLogin(username, password);
 
-        return new ResponseEntity<Boolean>(login, HttpStatus.CREATED);
+        if (user != null) {
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+        }
     }
 }
