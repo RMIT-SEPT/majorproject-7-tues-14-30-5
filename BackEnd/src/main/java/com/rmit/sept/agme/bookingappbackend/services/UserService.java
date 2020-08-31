@@ -18,8 +18,12 @@ public class UserService {
 
         // Business Logic
 
-
         return userRepository.save(user);
+    }
+
+    public User findUser(String username) {
+        Optional<User> userOpt = userRepository.findById(username);
+        return userOpt.get();
     }
 
     public User addUser(User user) {

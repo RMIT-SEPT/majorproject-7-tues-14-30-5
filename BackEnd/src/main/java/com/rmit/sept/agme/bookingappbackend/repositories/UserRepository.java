@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, String> {
 
-    @Override
-    Iterable<User> findAllById(Iterable<String> iterable);
-
-    @Query("SELECT COUNT(u) FROM User u")
-    int countUsers();
+//    @Override
+//    Iterable<User> findAllById(Iterable<String> iterable);
+//
+//    @Query("SELECT COUNT(u) FROM User u")
+//    int countUsers();
 
 }

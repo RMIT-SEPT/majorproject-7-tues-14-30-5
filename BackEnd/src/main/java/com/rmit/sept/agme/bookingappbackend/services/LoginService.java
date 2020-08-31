@@ -42,10 +42,10 @@ public class LoginService {
 //        }
 
         if (userOpt.isPresent() && userOpt.get().getUsername().equals(username) && userOpt.get().getPassword().equals(password)) {
-            user = userOpt.get();
+//            user = userOpt.get();
             return userOpt.get();
         } else {
-            System.out.println("\n=====\nRepository did not find a user\n=====\n");
+            System.out.println("\n=====\nRepository did not find a user\n=====\n"); // For debugging, comment out when finished
             return null;
         }
 
