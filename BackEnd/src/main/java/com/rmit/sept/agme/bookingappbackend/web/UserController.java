@@ -1,5 +1,6 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
+import com.rmit.sept.agme.bookingappbackend.exceptions.UserException;
 import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("")
+    @PostMapping("/registration")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
 
         if (result.hasErrors()) {
@@ -34,9 +35,17 @@ public class UserController {
             }
         }
 
-        User user1 = userService.saveOrUpdateUser(user);
+        User user1 = userService.addUser(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUser(String username, String password, String firstName, String lastName, String address, String contactNo) {
+        try {
+            return new ResponseEntity<User>(userService.updateUser(username, password, firstName, lastName, address, contactNo), HttpStatus.CREATED);
+        } catch (UserException e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
+    }
 }

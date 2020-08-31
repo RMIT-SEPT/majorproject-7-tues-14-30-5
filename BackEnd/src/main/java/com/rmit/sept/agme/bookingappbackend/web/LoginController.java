@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.agme.bookingappbackend.model.User;
+import com.rmit.sept.agme.bookingappbackend.requests.LoginRequest;
 import com.rmit.sept.agme.bookingappbackend.services.LoginService;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import jdk.nashorn.internal.parser.JSONParser;
@@ -27,8 +28,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping(value = "/login")
-    public ResponseEntity<?> validate(@RequestBody String loginDetails, BindingResult result) throws JsonProcessingException {
+    @PostMapping(value = "/api/login")
+    public ResponseEntity<?> validate(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) throws JsonProcessingException {
 
         if (result.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
@@ -36,14 +37,10 @@ public class LoginController {
                 return new ResponseEntity<List<FieldError>>(result.getFieldErrors(), HttpStatus.BAD_REQUEST);
             }
         }
-        ObjectMapper m = new ObjectMapper();
-        JsonNode j = m.readTree(loginDetails);
-        String username = j.get("username").asText();
-        String password = j.get("password").asText();
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
         Boolean login = loginService.validateLogin(username, password);
-
 
         return new ResponseEntity<Boolean>(login, HttpStatus.CREATED);
     }
-
 }

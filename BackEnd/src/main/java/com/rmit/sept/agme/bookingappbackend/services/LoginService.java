@@ -17,23 +17,6 @@ public class LoginService {
     @Autowired
     private UserRepository userRepository;
 
-    UserService  userService;
-
-    /*
-        Incomplete; I'm not sure if a standalone method like this is needed, feel free
-        to delete if you have no use for it/no reason to warrant completion.
-        - Matt D
-     */
-//    public List<User> findAllByUsername(String username) {
-//        Iterator<User> allUsers = userRepository.findAll().iterator();
-//
-//        while (allUsers.hasNext()) {
-//            if(allUsers.next().getUsername().equals(username)) {
-//
-//            }
-//        }
-//    }
-
     /**
      * Validates inputted login credentials
      * @param username Username entered in login form
@@ -60,18 +43,6 @@ public class LoginService {
         if (userOpt.isPresent() && userOpt.get().getUsername().equals(username) && userOpt.get().getPassword().equals(password)) {
             validated = true;
         }
-
-//        if (((ArrayList) userService.getUsers()).size() >= 5) {
-//            Optional<User> userOptional = userRepository.findById(username);
-//
-//            if(userOptional.isPresent()) {
-//                user = userOptional.get();
-//
-//                if (user.getPassword().equals(password)) {
-//                    validated = true;
-//                }
-//            }
-//        }
 
         return validated;
     }

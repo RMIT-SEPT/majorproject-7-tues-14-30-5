@@ -25,6 +25,7 @@ import java.util.Date;
     private String address;
     @NotBlank(message = "Contact number required")
     private String contactNo;
+    @NotBlank(message = "Role must be specified")
     private String role;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
@@ -35,11 +36,12 @@ import java.util.Date;
     public User() {
 
     }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-
     }
+
     public User(String username, String password, String name, String contactNo) {
         this.username = username;
         this.password = password;
