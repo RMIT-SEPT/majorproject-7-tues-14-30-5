@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import static com.rmit.sept.agme.bookingappbackend.constants.Constants.CUSTOMER;
+import static com.rmit.sept.agme.bookingappbackend.constants.Constants.WORKER;
+import static com.rmit.sept.agme.bookingappbackend.constants.Constants.ADMIN;
 
 @Service
 public class UserService {
@@ -14,34 +17,58 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User saveOrUpdateUser(User user) {
-
-        // Business Logic
-
-        return userRepository.save(user);
-    }
-
+    /**
+     * Attempts to find a certain user in UserRepository.
+     * @param username The primary key to search UserRepository with.
+     * @return User that matches the username - Otherwise NULL.
+     */
     public User findUser(String username) {
         Optional<User> userOpt = userRepository.findById(username);
-        return userOpt.get();
+        if (userOpt.isPresent()) {
+            return userOpt.get();
+        } else {
+            return null;
+        }
     }
 
+    /**
+     * Attempts to add a new user to UserRepository.
+     * @param user The user to add to UserRepository.
+     * @return The same user if it succeeds in adding - Otherwise throw an UserException.
+     */
     public User addUser(User user) {
         if (userRepository.existsById(user.getUsername())) {
-            throw new UserException(user.getUsername() + "' is not available. Please pick a different one.");
-        }
-        else {
+            throw new UserException(user.getUsername() + " is not available. Please pick a different one.");
+        } else if (!validateContactNoRegex(user.getContactNo())) {
+            throw new UserException(user.getContactNo() + " is not a valid contact number.");
+        } else if (!validateRole(user.getRole())) {
+            throw new UserException(user.getRole() + " is not a valid role");
+        } else {
             return userRepository.save(user);
         }
     }
 
+    /**
+     * Attempts to update the information of a current user in UserRepository.
+     * @param username The primary key for finding a user.
+     * @param password The new password to change into.
+     * @param firstName The new first name to change into (firstName + Lastname).
+     * @param lastName The new last name to change into (firstName + Lastname).
+     * @param address The new address to change into.
+     * @param contactNo The new contact number to change into.
+     * @return The same user with updates details if it succeeds - Otherwise throw an UserException.
+     */
     public User updateUser(String username, String password, String firstName, String lastName, String address, String contactNo) {
         Optional<User> userOpt = userRepository.findById(username);
         if (userOpt.isPresent()) {
             if (validateUpdateDetails(password, firstName, contactNo)) {
                 User updateUser = userOpt.get();
                 updateUser.setPassword(password);
-                updateUser.setName(firstName + " " + lastName);
+                if (lastName != null && !lastName.isEmpty()) {
+                    updateUser.setName(firstName + " " + lastName);
+                } else {
+                    updateUser.setName(firstName);
+                }
                 updateUser.setAddress(address);
                 updateUser.setContactNo(contactNo);
                 return userRepository.save(updateUser);
@@ -53,24 +80,66 @@ public class UserService {
         }
     }
 
+    /**
+     * DEPRECIATED - Deletes a user from UserRepository.
+     * @param user The user to delete.
+     */
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
 
+    /**
+     * DEPRECIATED - Retrieves all the users in the UserRepository.
+     * @return Iterable of all users in UserRepository.
+     */
     public Iterable<User> getUsers(){
         Iterable<User> users = userRepository.findAll();
 
         return users;
     }
 
+    /**
+     * HELPER: Validates if the fields to enter are valid/present before proceeding with user updating.
+     * @param password The potential new password of the user.
+     * @param firstName The potential new first name of the user.
+     * @param contactNo The potential new contact number of the user.
+     * @return True if all parameters are valid for updating.
+     */
     private boolean validateUpdateDetails(String password, String firstName, String contactNo) {
         if (password.length() >= 6 && password.length() <= 20) {
             if (!firstName.isEmpty()) {
-                if (contactNo.matches("[0-9]+")) {
+                if (validateContactNoRegex(contactNo)) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * HELPER: Validates contact number for regex
+     * @param contactNo Contact number to validate
+     * @return True if contactNo passes regex matching [0-9]+
+     */
+    private boolean validateContactNoRegex(String contactNo) {
+        if (contactNo.matches("[0-9]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * HELPER: Validates role name if in one of three ('customer', 'worker' or 'admin').
+     * NOTE: NOT EXPECTED TO BE ABLE TO RETURN FALSE IN NORMAL FRONT END USAGE BUT IS FOR ADMIN
+     * @param role Role name to validate
+     * @return True if the role name fits in one of the 3 roles
+     */
+    private boolean validateRole(String role) {
+        if (role.equals(CUSTOMER) || role.equals(WORKER) || role.equals(ADMIN)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

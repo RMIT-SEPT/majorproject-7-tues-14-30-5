@@ -1,23 +1,16 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.requests.LoginRequest;
 import com.rmit.sept.agme.bookingappbackend.services.LoginService;
-import com.rmit.sept.agme.bookingappbackend.services.UserService;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +18,18 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
+
     @Autowired
     private LoginService loginService;
 
+    /**
+     * Validates login request of a user.
+     * @param loginRequest Request form containing username and password sent from front end.
+     * @param result Validation result.
+     * @return ResponseEntity of user if successful - Otherwise field errors or false (unsuccessful login).
+     */
     @PostMapping(value = "/api/login")
-    public ResponseEntity<?> validate(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) throws JsonProcessingException {
+    public ResponseEntity<?> validate(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
 
         if (result.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
@@ -37,10 +37,8 @@ public class LoginController {
                 return new ResponseEntity<List<FieldError>>(result.getFieldErrors(), HttpStatus.BAD_REQUEST);
             }
         }
-        String username = loginRequest.getUsername();
-        String password = loginRequest.getPassword();
-        User user = loginService.validateLogin(username, password);
 
+        User user = loginService.validateLogin(loginRequest.getUsername(), loginRequest.getPassword());
         if (user != null) {
             return new ResponseEntity<User>(user, HttpStatus.OK);
         } else {

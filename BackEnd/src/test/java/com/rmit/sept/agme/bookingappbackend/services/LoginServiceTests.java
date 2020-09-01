@@ -29,7 +29,7 @@ class LoginServiceTests {
     void setUp() {
         User user = new User("Username1","Password1","PersonName","ContactNo");
         repository.save(user);
-        userService.saveOrUpdateUser(user);
+//        userService.saveOrUpdateUser(user);
     }
 
     @Test

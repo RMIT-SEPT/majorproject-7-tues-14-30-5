@@ -29,15 +29,7 @@ import java.util.Date;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
-
-    public User() {
-
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    public User() {}
 
     public User(String username, String password, String name, String contactNo) {
         this.username = username;

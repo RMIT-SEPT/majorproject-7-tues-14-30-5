@@ -48,22 +48,22 @@ public class UserServiceTests {
     LoginService loginService;
     @BeforeAll
     void setUp() {
-         user = new User("aaaaa","qwe123");
-        user2 = new User("aaaaaa","qwe123");
-        user3 = new User("aaaaa","qwe123");
-        user4 = new User("aaaaaa","qwe123");
-        user5 = new User("aaaaa","qwe123");
-        user6 = new User("aaaaaa","qwe123");
+//         user = new User("aaaaa","qwe123");
+//        user2 = new User("aaaaaa","qwe123");
+//        user3 = new User("aaaaa","qwe123");
+//        user4 = new User("aaaaaa","qwe123");
+//        user5 = new User("aaaaa","qwe123");
+//        user6 = new User("aaaaaa","qwe123");
          loginService = new LoginService();
     }
 
     @Test
     public void getUsersTesting(){
 
-        when(repository.findAll()).thenReturn(Stream.of(new User("AK","AK12345")
-               ,new User("AK","AK12345")).collect(Collectors.toList()));
-
-       Assert.assertEquals(2,  ((ArrayList) userService.getUsers()).size());
+//        when(repository.findAll()).thenReturn(Stream.of(new User("AK","AK12345")
+//               ,new User("AK","AK12345")).collect(Collectors.toList()));
+//
+//       Assert.assertEquals(2,  ((ArrayList) userService.getUsers()).size());
 
     }
     @Test

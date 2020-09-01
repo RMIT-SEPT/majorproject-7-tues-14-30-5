@@ -3,6 +3,9 @@ package com.rmit.sept.agme.bookingappbackend.requests;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * Class for request '/api/login'
+ */
 public class LoginRequest {
     @Size(min = 6, max = 20, message = "Username must be longer than 6 characters")
     @NotBlank(message = "Username required")
@@ -21,6 +24,6 @@ public class LoginRequest {
     }
 
     public String getPassword() {
-        return  this.password;
+        return this.password;
     }
 }

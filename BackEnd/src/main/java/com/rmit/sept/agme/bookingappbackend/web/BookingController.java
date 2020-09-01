@@ -35,7 +35,7 @@ public class BookingController {
             }
         }
 
-        Booking booking1 = bookingService.saveOrUpdateBooking(booking);
+        Booking booking1 = bookingService.saveOrUpdateBooking(booking, "something");
         return new ResponseEntity<Booking>(booking, HttpStatus.CREATED);
 
     }
