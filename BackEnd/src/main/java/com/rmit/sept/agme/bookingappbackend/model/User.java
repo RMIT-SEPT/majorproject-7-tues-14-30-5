@@ -1,32 +1,43 @@
 package com.rmit.sept.agme.bookingappbackend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class User {
+ public class User {
 
     @Id
+    @Size(min = 6, max = 20, message = "name must be longer than 6 characters")
     private String username;
+    @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
+    @NotBlank(message = "Password required")
     private String password;
-
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name required")
     private String name;
     private String address;
+    @NotBlank(message = "Contact number required")
     private String contactNo;
+    @NotBlank(message = "Role must be specified")
     private String role;
-
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
+    public User() {}
 
-    public User() {
-
+    public User(String username, String password, String name, String contactNo) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.contactNo = contactNo;
     }
+
 
     public String getUsername() {
         return username;
