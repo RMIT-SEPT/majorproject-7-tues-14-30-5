@@ -62,16 +62,16 @@ public class UserService {
         Optional<User> userOpt = userRepository.findById(username);
         if (userOpt.isPresent()) {
             if (validateUpdateDetails(password, firstName, contactNo)) {
-                User updateUser = userOpt.get();
-                updateUser.setPassword(password);
+                User newUserDetails = userOpt.get();
+                newUserDetails.setPassword(password);
                 if (lastName != null && !lastName.isEmpty()) {
-                    updateUser.setName(firstName + " " + lastName);
+                    newUserDetails.setName(firstName + " " + lastName);
                 } else {
-                    updateUser.setName(firstName);
+                    newUserDetails.setName(firstName);
                 }
-                updateUser.setAddress(address);
-                updateUser.setContactNo(contactNo);
-                return userRepository.save(updateUser);
+                newUserDetails.setAddress(address);
+                newUserDetails.setContactNo(contactNo);
+                return userRepository.save(newUserDetails);
             } else {
                 throw new UserException("Information is not valid");
             }
