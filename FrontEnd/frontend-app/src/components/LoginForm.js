@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import './LoginForm.css'
+import './loginForm.css'
 export default class LoginForm extends Component {
 
     constructor(props) {
@@ -35,7 +35,32 @@ export default class LoginForm extends Component {
         return (
           // <div className="col-md-5 col-md-offset-2">
           <div className="login">
+          <div className="Main"> 
+          <div className="Logo"> </div>
+                <div className="LetterA"> A</div>
+                    <div className="LetterG"> G</div>
+                        <div className="LetterM"> M</div>
+                            <div className="LetterE"> E</div>
+                                <div className="AGME"> AGME Booking Solution</div>
+                {/* <div className="Home"> Home</div> */}
+                {/* <div className="Contact"> Contact</div> */}
+                {/* <div className="About"> About</div> */}
+                <button class="homeBtn">HOME</button>
+                <button class="AboutBtn">ABOUT</button>
+                <button class="ContactBtn">CONTACT</button>
+          </div>
+
+
+
+
+
             <div className="login__container">
+            <div className="Logo_LoginBox"> </div>
+            <div className="LetterA"> A</div>
+                <div className="LetterG"> G</div>
+                    <div className="LetterM"> M</div>
+                        <div className="LetterE"> E</div>
+                            <div className="AGME"> AGME Booking Solution</div>
               <Form onSubmit={this.signIn} id="loginFormId">
                 <form username="">
                   <Form.Group controlId="formBasicEmail">
