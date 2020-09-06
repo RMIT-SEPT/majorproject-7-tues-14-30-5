@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import './loginForm.css'
 
 export default class LoginForm extends Component {
 
@@ -32,28 +33,48 @@ export default class LoginForm extends Component {
 
     render() {
         return (
-            <div className="col-md-5 col-md-offset-2">
-                <Form onSubmit={this.signIn} id="loginFormId">
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Row>
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control required name="username" value={this.state.username} onChange={this.formChange} type="username" placeholder="Username" />
-                        </Form.Row>
-                    </Form.Group>
+          // <div className="col-md-5 col-md-offset-2">
+          <div className="login">
+            <div className="login__container">
+              <Form onSubmit={this.signIn} id="loginFormId">
+                <form username="">
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Row>
+                      <Form.Control
+                        required
+                        name="username"
+                        value={this.state.username}
+                        onChange={this.formChange}
+                        type="username"
+                        placeholder="Username"
+                      />
+                    </Form.Row>
+                  </Form.Group>
+								</form>
+								
+                <form password="">
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Row>
+                      <Form.Control
+                        required
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.formChange}
+                        type="password"
+                        placeholder="Password"
+                      />
+                    </Form.Row>
+                  </Form.Group>
+                </form>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Row>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control required name="password" value={this.state.password} onChange={this.formChange} type="password" placeholder="Password" />
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Button variant="success" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                <Button variant="success" type="submit">
+                  Submit
+                </Button>
+              </Form>
+              "
             </div>
-        )
+          </div>
+        );
 
     }
 
