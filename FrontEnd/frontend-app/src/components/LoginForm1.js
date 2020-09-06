@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-
+import './LoginForm.css'
 export default class LoginForm extends Component {
 
     constructor(props) {
@@ -21,6 +21,7 @@ export default class LoginForm extends Component {
 	};
         axios.post('http://localhost:8080/login', data).then(r => console.log(r)).catch(error => console.log(error));
         event.preventDefault()
+        
     }
     formChange(event)
     {
@@ -32,8 +33,29 @@ export default class LoginForm extends Component {
 
     render() {
         return (
-            <div className="col-md-5 col-md-offset-2">
-                <Form onSubmit={this.signIn} id="loginFormId">
+            <div className="Main"> 
+              <div className="Logo"> </div>
+                <div className="LetterA"> A</div>
+                    <div className="LetterG"> G</div>
+                        <div className="LetterM"> M</div>
+                            <div className="LetterE"> E</div>
+                                <div className="AGME"> AGME Booking Solution</div>
+                {/* <div className="Home"> Home</div> */}
+                {/* <div className="Contact"> Contact</div> */}
+                {/* <div className="About"> About</div> */}
+                <button class="homeBtn">HOME</button>
+                <button class="AboutBtn">ABOUT</button>
+                <button class="ContactBtn">CONTACT</button>
+                
+
+
+
+
+               
+                
+
+                
+                {/* <Form onSubmit={this.signIn} id="loginFormId">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Row>
                             <Form.Label>Username</Form.Label>
@@ -49,9 +71,10 @@ export default class LoginForm extends Component {
                     </Form.Group>
 
                     <Button variant="success" type="submit">
-                        Submit
+                        LOGIN
                     </Button>
-                </Form>
+                </Form> */}
+                
             </div>
         )
 
