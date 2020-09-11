@@ -92,7 +92,7 @@ public class UserService {
      * DEPRECIATED - Retrieves all the users in the UserRepository.
      * @return Iterable of all users in UserRepository.
      */
-    public Iterable<User> getUsers(){
+    public Iterable<User> getUsers() {
         Iterable<User> users = userRepository.findAll();
 
         return users;

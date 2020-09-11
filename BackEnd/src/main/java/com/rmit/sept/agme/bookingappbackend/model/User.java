@@ -31,11 +31,13 @@ import java.util.Date;
 
     public User() {}
 
-    public User(String username, String password, String name, String contactNo) {
+    public User(String username, String password, String name, String contactNo, String role) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.contactNo = contactNo;
+        this.role = role;
+        this.address = "";
     }
 
 
