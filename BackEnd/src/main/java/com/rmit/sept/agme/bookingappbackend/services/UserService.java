@@ -81,24 +81,6 @@ public class UserService {
     }
 
     /**
-     * DEPRECIATED - Deletes a user from UserRepository.
-     * @param user The user to delete.
-     */
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
-
-    /**
-     * DEPRECIATED - Retrieves all the users in the UserRepository.
-     * @return Iterable of all users in UserRepository.
-     */
-    public Iterable<User> getUsers(){
-        Iterable<User> users = userRepository.findAll();
-
-        return users;
-    }
-
-    /**
      * HELPER: Validates if the fields to enter are valid/present before proceeding with user updating.
      * @param password The potential new password of the user.
      * @param firstName The potential new first name of the user.

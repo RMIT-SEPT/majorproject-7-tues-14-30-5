@@ -40,6 +40,14 @@ import java.util.Date;
         this.address = "";
     }
 
+    public User(String username, String password, String name, String contactNo, String role, String address) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.contactNo = contactNo;
+        this.role = role;
+        this.address = address;
+    }
 
     public String getUsername() {
         return username;
