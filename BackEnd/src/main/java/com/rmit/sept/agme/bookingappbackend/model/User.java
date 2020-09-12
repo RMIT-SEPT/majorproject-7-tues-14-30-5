@@ -12,7 +12,7 @@ import java.util.Date;
  public class User {
 
     @Id
-    @Size(min = 6, max = 20, message = "name must be longer than 6 characters")
+    @Size(min = 6, max = 20, message = "Name must be longer than 6 characters")
     private String username;
     @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
     @NotBlank(message = "Password required")
@@ -31,13 +31,14 @@ import java.util.Date;
 
     public User() {}
 
-    public User(String username, String password, String name, String contactNo) {
+    public User(String username, String password, String name, String contactNo, String role) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.contactNo = contactNo;
-    }
+        this.role = role;
 
+    }
 
     public String getUsername() {
         return username;
