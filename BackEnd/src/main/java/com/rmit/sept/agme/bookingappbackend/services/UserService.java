@@ -61,7 +61,7 @@ public class UserService {
     public User updateUser(String username, String password, String firstName, String lastName, String address, String contactNo) {
         Optional<User> userOpt = userRepository.findById(username);
         if (userOpt.isPresent()) {
-            if (validateUpdateDetails(password, firstName, contactNo)) {
+            if (validateUpdateDetails(password, firstName, lastName, contactNo)) {
                 User newUserDetails = userOpt.get();
                 newUserDetails.setPassword(password);
                 if (lastName != null && !lastName.isEmpty()) {
@@ -80,18 +80,25 @@ public class UserService {
         }
     }
 
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
+    }
+
     /**
      * HELPER: Validates if the fields to enter are valid/present before proceeding with user updating.
      * @param password The potential new password of the user.
      * @param firstName The potential new first name of the user.
+     * @param lastName The potential new last name of the user.
      * @param contactNo The potential new contact number of the user.
      * @return True if all parameters are valid for updating.
      */
-    private boolean validateUpdateDetails(String password, String firstName, String contactNo) {
+    private boolean validateUpdateDetails(String password, String firstName, String lastName, String contactNo) {
         if (password.length() >= 6 && password.length() <= 20) {
             if (!firstName.isEmpty()) {
-                if (validateContactNoRegex(contactNo)) {
-                    return true;
+                if (!lastName.isEmpty()) {
+                    if (validateContactNoRegex(contactNo)) {
+                        return true;
+                    }
                 }
             }
         }
