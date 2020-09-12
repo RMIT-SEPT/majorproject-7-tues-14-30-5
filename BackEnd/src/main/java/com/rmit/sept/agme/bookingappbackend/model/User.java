@@ -14,7 +14,7 @@ import java.util.Date;
     @Id
     @Size(min = 2, max = 20, message = "Name must be longer than 6 characters")
     private String username;
-    @Size(min = 2, max = 20, message = "Password must be longer than 6 characters")
+    @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
     @NotBlank(message = "Password required")
     private String password;
     @NotBlank(message = "Name required")
