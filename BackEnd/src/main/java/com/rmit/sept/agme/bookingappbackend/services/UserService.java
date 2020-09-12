@@ -31,6 +31,10 @@ public class UserService {
         }
     }
 
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
+    }
+
     /**
      * Attempts to add a new user to UserRepository.
      * @param user The user to add to UserRepository.
