@@ -55,7 +55,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("Password too short")
     void _2_updateUser_passwordCheckLessThan6CharsThrowsException_thenSucceedsMessage() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         Exception exception = assertThrows(UserException.class, ()->
                 userService.updateUser("Username", "pw", "newName",
                 "newLastName", "newAddress", "0505050505"));
@@ -69,7 +69,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("Password too long")
     void _3_updateUser_passwordCheckMoreThan20CharsThrowsException_thenSucceedsMessage() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         Exception exception = assertThrows(UserException.class, ()->
                 userService.updateUser("Username", "newpasswordishellalongandshouldbelong", "newName",
                 "newLastName", "newAddress", "0505050505"));
@@ -83,7 +83,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("First name is blank")
     void _4_updateUser_firstNameIsEmptyThrowsException_thenSucceedsMessage() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         Exception exception = assertThrows(UserException.class, ()->
                 userService.updateUser("Username", "newPassword", "",
                 "newLastName", "newAddress", "0505050505"));
@@ -97,7 +97,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("Last name is empty and OK")
     void _5_updateUser_lastNameIsEmpty_validAndTrue() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         User newUser = userService.updateUser("Username", "newPassword", "newName",
                 "", "newAddress", "0505050505");
 
@@ -111,7 +111,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("Address is empty and OK")
     void _6_updateUser_addressIsEmpty_validAndTrue() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         User newUser = userService.updateUser("Username", "newPassword", "newFirstName",
                 "newLastName", "", "0505050505");
 
@@ -125,7 +125,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("Contact Number is incorrect")
     void _7_updateUser_contactNoIsIncorrectThrowsException_thenSucceedsMessage() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         Exception exception = assertThrows(UserException.class, ()->
                 userService.updateUser("Username", "newPassword", "newFirstName",
                         "newLastName", "newAddress", "notANumber"));
@@ -139,7 +139,7 @@ public class UserServiceTests {
     @Test
     @DisplayName("User does not exist in database")
     void _8_updateUser_userDoesNotExist_thenSucceedsMessage() {
-        userService.addUser((user1));
+        userService.addUser(user1);
         Exception exception = assertThrows(UserException.class, ()->
                 userService.updateUser("noUserExists", "newPassword", "newName",
                         "newLastName", "newAddress", "notANumber"));
