@@ -12,7 +12,7 @@ class Header extends Component {
                     <Nav.Link href="/contact">Contact Us</Nav.Link>
                 </Nav>
                 <Nav className="ml-auto">
-                    <Nav.Link href="/login" activeClassName="current">Log In</Nav.Link>
+                    <Nav.Link href="/login" activeclassname="current">Log In</Nav.Link>
                     <Nav.Link href="/registration">Sign Up</Nav.Link>
                 </Nav>
             </Navbar>
