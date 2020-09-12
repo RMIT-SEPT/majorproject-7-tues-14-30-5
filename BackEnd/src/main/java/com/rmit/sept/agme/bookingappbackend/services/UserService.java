@@ -31,10 +31,6 @@ public class UserService {
         }
     }
 
-    public void deleteUser(String username) {
-        userRepository.deleteById(username);
-    }
-
     /**
      * Attempts to add a new user to UserRepository.
      * @param user The user to add to UserRepository.
@@ -126,6 +122,16 @@ public class UserService {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * HELPER: Used for cleanup in UserServiceTests
+     * @param username The username to find and delete
+     */
+    public void deleteUser(String username) {
+        if (userRepository.existsById(username)) {
+            userRepository.deleteById(username);
         }
     }
 }
