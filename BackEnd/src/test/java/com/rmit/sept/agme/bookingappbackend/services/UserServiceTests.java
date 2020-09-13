@@ -5,7 +5,6 @@ import com.rmit.sept.agme.bookingappbackend.model.User;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testng.Assert;
 
 import static org.junit.Assert.*;
 
@@ -100,7 +99,7 @@ public class UserServiceTests {
         userService.addUser(user1);
         User newDetailsUser = userService.updateUser("Username", "newPassword", "newName",
                 "newLastName", "newAddress", "0505050505");
-        Assert.assertFalse(sameUser(user1, newDetailsUser));
+        assertFalse(sameUser(user1, newDetailsUser));
     }
 
     @Test
