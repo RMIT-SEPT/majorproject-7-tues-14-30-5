@@ -2,6 +2,7 @@ package com.rmit.sept.agme.bookingappbackend.services;
 
 import com.rmit.sept.agme.bookingappbackend.exceptions.UserException;
 import com.rmit.sept.agme.bookingappbackend.model.User;
+import com.rmit.sept.agme.bookingappbackend.testUtilities.TestUtilities;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +44,7 @@ public class UserServiceTests {
     @DisplayName("findUser: Successfully finds a user")
     void _1_findUser_true_user1() {
         userService.addUser(user1);
-        assertTrue(sameUser(user1, userService.findUser(user1.getUsername())));
+        assertTrue(TestUtilities.sameUser(user1, userService.findUser(user1.getUsername())));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class UserServiceTests {
     @DisplayName("addUser: Entering in a new user - Successfully")
     void _1_addUser_true_user1() {
         User serviceUser = userService.addUser(user1);
-        assertTrue(sameUser(user1, serviceUser));
+        assertTrue(TestUtilities.sameUser(user1, serviceUser));
     }
 
     @Test
@@ -99,7 +100,7 @@ public class UserServiceTests {
         userService.addUser(user1);
         User newDetailsUser = userService.updateUser("Username", "newPassword", "newName",
                 "newLastName", "newAddress", "0505050505");
-        assertFalse(sameUser(user1, newDetailsUser));
+        assertFalse(TestUtilities.sameUser(user1, newDetailsUser));
     }
 
     @Test
@@ -200,21 +201,5 @@ public class UserServiceTests {
         System.out.println(actualMessage);
 
         assertTrue(actualMessage.contains(expectedMessage));
-    }
-
-    /**
-     * Helper function for test classes - Checks if two users have the same details
-     * @param a First User
-     * @param b Second User
-     * @return True if they have the exact same data in their fields
-     */
-    private boolean sameUser(User a, User b) {
-        if (a.getUsername().equals(b.getUsername()) && a.getPassword().equals(b.getPassword()) &&
-                a.getName().equals(b.getName()) && a.getAddress().equals(b.getAddress()) &&
-                a.getContactNo().equals(b.getContactNo()) && a.getRole().equals(b.getRole())) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
