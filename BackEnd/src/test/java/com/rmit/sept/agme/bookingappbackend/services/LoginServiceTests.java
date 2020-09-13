@@ -4,9 +4,7 @@ import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.repositories.UserRepository;
 import com.rmit.sept.agme.bookingappbackend.testUtilities.TestUtilities;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.Assert.*;

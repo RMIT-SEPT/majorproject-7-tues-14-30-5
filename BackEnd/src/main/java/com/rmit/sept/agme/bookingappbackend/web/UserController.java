@@ -5,7 +5,6 @@ import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import com.rmit.sept.agme.bookingappbackend.requests.UpdateDetailsRequest;
 
-import org.aspectj.weaver.ResolvedPointcutDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -149,8 +149,7 @@ public class UserServiceTests {
     @DisplayName("updateUser: Last name is empty and OK")
     void _5_updateUser_lastNameIsEmpty_validAndTrue() {
         userService.addUser(user1);
-        User newUser = userService.updateUser("Username", "newPassword", "newName",
-                "", "newAddress", "0505050505");
+        userService.updateUser("Username", "newPassword", "newName", "", "newAddress", "0505050505");
 
         String actualName = userService.findUser("Username").getName();
         String expectedName = "newName";
@@ -163,13 +162,12 @@ public class UserServiceTests {
     @DisplayName("updateUser: Address is empty and OK")
     void _6_updateUser_addressIsEmpty_validAndTrue() {
         userService.addUser(user1);
-        User newUser = userService.updateUser("Username", "newPassword", "newFirstName",
-                "newLastName", "", "0505050505");
+        userService.updateUser("Username", "newPassword", "newFirstName", "newLastName", "", "0505050505");
 
         String actualAddress = userService.findUser("Username").getAddress();
         String expectedAddress = "";
 
-        assertTrue(actualAddress.contains(expectedAddress));
+        assertEquals(actualAddress, expectedAddress);
 
     }
 
