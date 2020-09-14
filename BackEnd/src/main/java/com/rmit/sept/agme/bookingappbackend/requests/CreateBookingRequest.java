@@ -12,4 +12,9 @@ import java.util.Date;
 public class CreateBookingRequest {
     @JsonFormat(pattern = "HH:mm")
     private Date time;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date date;
+    private String customer;
+    private String worker;
+    private String service;
 }
