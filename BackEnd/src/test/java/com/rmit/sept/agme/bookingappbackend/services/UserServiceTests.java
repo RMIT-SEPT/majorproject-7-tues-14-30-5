@@ -349,6 +349,84 @@ public class UserServiceTests {
     }
 
 
+    @Test
+    @DisplayName("updateUser: Password is Min Boundary")
+    void updateUser_passwordBoundaryCheckOf6_true() {
+        userService.addUser(user1);
+        User newUser = userService.updateUser("Username", "pwpw12", "newName",
+                        "newLastName", "newAddress", "0505050505");
+
+
+
+        User updatedUser = userService.findUser(user1.getUsername());
+        Assert.assertEquals(newUser.getPassword(), updatedUser.getPassword());
+
+    }
+
+
+    @Test
+    @DisplayName("addUser: Username is less than minimum")
+    void updateUser_usernameCheckLessThan6CharsThrowsException() {
+         Exception exception = assertThrows(TransactionSystemException.class, ()-> userService.addUser(user13));
+
+        String expectedMessage = "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("addUser: Attempting Empty username")
+    void addingUserWithEmptyUsername_user4() {
+        Exception exception = assertThrows(TransactionSystemException.class, ()->userService.addUser(user11));
+
+        String expectedMessage = "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
+    @Test
+    @DisplayName("updateUser: password is blank")
+    void updateUser_passwordIsEmptyThrowsException() {
+        userService.addUser(user1);
+        Exception exception = assertThrows(UserException.class, ()->
+                userService.updateUser("Username", "", "alkaffff",
+                        "newLastName", "newAddress", "0505050505"));
+
+        String expectedMessage = "Information is not valid";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("updateUser: contact no is blank")
+    void updateUser_contactNoEmptyThrowsException() {
+
+
+        Exception exception = assertThrows(UserException.class, ()-> userService.addUser(user14));
+
+        String expectedMessage = "is not a valid contact number";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("updateUser: role  is blank")
+    void updateUser_roleIsEmptyThrowsException() {
+
+
+        Exception exception = assertThrows(UserException.class, ()-> userService.addUser(user15));
+
+        String expectedMessage = " is not a valid role";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 
     /**
      * Helper function for test classes - Checks if two users have the same details
