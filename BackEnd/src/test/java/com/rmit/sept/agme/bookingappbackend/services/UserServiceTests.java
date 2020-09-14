@@ -31,6 +31,12 @@ public class UserServiceTests {
     private User user6;
     private User user7;
     private User user8;
+    private User user11;
+    private User user12;
+    private User user13;
+    private User user14;
+    private User user15;
+
 
     @BeforeAll
     void setUp() {
@@ -43,6 +49,13 @@ public class UserServiceTests {
         user6 = new User("Username1234567890123","Password", "PersonName", "0404040404", "customer");
         user7 = new User("Username","Password", "", "0404040404", "customer");
         user8 = new User("Username","Password", "PersonName", "", "customer");
+
+        user11 = new User("","Password", "PersonName", "0404040404", "customer");
+        user12 = new User("Username","", "PersonName", "0404040404", "customer");
+        user13 = new User("AK","Password", "PersonName", "0404040404", "customer");
+        user14 = new User("Elijah","Password", "PersonName", "", "customer");
+        user15 = new User("Elijaah","Password", "PersonName", "0909090909", "");
+        
     }
 
     @AfterEach
@@ -334,6 +347,87 @@ public class UserServiceTests {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+
+    @Test
+    @DisplayName("updateUser: Password is Min Boundary")
+    void updateUser_passwordBoundaryCheckOf6_thenSucceedsMessage() {
+        userService.addUser(user1);
+        User newUser = userService.updateUser("Username", "pwpw12", "newName",
+                        "newLastName", "newAddress", "0505050505");
+
+
+
+        User updatedUser = userService.findUser(user1.getUsername());
+        Assert.assertEquals(newUser.getPassword(), updatedUser.getPassword());
+
+    }
+
+
+    @Test
+    @DisplayName("addUser: Username is less than minimum")
+    void updateUser_userameCheckLessThan6CharsThrowsException_thenSucceedsMessage() {
+         Exception exception = assertThrows(TransactionSystemException.class, ()-> userService.addUser(user13));
+
+        String expectedMessage = "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("addUser: Attempting Empty username")
+    void addingUserWithEmptyUsername_user4() {
+        Exception exception = assertThrows(TransactionSystemException.class, ()->userService.addUser(user11));
+
+        String expectedMessage = "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
+    @Test
+    @DisplayName("updateUser: password is blank")
+    void __4_updateUser_passIsEmptyThrowsException_thenSucceedsMessage() {
+        userService.addUser(user1);
+        Exception exception = assertThrows(UserException.class, ()->
+                userService.updateUser("Username", "", "alkaffff",
+                        "newLastName", "newAddress", "0505050505"));
+
+        String expectedMessage = "Information is not valid";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("updateUser: contact no is blank")
+    void __44_updateUser_passIsEmptyThrowsException_thenSucceedsMessage() {
+
+
+        Exception exception = assertThrows(UserException.class, ()-> userService.addUser(user14));
+
+        String expectedMessage = "is not a valid contact number";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("updateUser: role  is blank")
+    void __444_updateUser_passIsEmptyThrowsException_thenSucceedsMessage() {
+
+
+        Exception exception = assertThrows(UserException.class, ()-> userService.addUser(user15));
+
+        String expectedMessage = " is not a valid role";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
 
     /**
      * Helper function for test classes - Checks if two users have the same details
