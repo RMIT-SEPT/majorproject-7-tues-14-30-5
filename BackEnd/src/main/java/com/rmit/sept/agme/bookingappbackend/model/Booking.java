@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -23,12 +24,23 @@ public class Booking {
     @ManyToOne(cascade = CascadeType.ALL)
     private User customer;
 
-    private String service;
-    private double cost;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Service service;
+    private BigDecimal cost;
 
     private boolean completed;
     private boolean paid;
 
+    public Booking(Date time, Date date, User worker, User customer, Service service, BigDecimal cost) {
+        this.time = time;
+        this.date = date;
+        this.worker = worker;
+        this.customer = customer;
+        this.service = service;
+        this.cost = cost;
+        this.completed = false;
+        this.paid = false;
+    }
 
     public Booking() {
         this.completed = false;
@@ -81,19 +93,19 @@ public class Booking {
         this.customer = customer;
     }
 
-    public String getService() {
+    public Service getService() {
         return service;
     }
 
-    public void setService(String service) {
+    public void setService(Service service) {
         this.service = service;
     }
 
-    public double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

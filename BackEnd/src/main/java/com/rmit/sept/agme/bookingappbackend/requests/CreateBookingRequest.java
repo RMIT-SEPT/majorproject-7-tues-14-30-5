@@ -14,7 +14,38 @@ public class CreateBookingRequest {
     private Date time;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date date;
+    @NotBlank(message = "Customer username is required")
     private String customer;
+    @NotBlank(message = "Worker username is required")
     private String worker;
+    @NotBlank(message = "Service name is required")
     private String service;
+
+    public CreateBookingRequest(Date time, Date date, String customer, String worker, String service) {
+        this.time = time;
+        this.date = date;
+        this.customer = customer;
+        this.worker = worker;
+        this.service = service;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public String getWorker() {
+        return worker;
+    }
+
+    public String getService() {
+        return service;
+    }
 }

@@ -1,5 +1,6 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
+import com.rmit.sept.agme.bookingappbackend.exceptions.BookingException;
 import com.rmit.sept.agme.bookingappbackend.model.Booking;
 import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.requests.CreateBookingRequest;
@@ -35,9 +36,13 @@ public class BookingController {
                 return new ResponseEntity<List<FieldError>>(result.getFieldErrors(), HttpStatus.BAD_REQUEST);
             }
         }
+        try {
+            Booking newBooking = bookingService.addBooking(createBookingRequest);
+            return new ResponseEntity<Booking>(newBooking, HttpStatus.CREATED);
+        } catch (BookingException e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        Booking booking1 = bookingService.saveOrUpdateBooking(booking, "something");
-        return new ResponseEntity<Booking>(booking, HttpStatus.CREATED);
     }
 
 }
