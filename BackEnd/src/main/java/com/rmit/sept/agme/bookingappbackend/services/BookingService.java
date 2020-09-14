@@ -4,7 +4,6 @@ import com.rmit.sept.agme.bookingappbackend.model.Booking;
 import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.repositories.BookingRepository;
 import com.rmit.sept.agme.bookingappbackend.requests.CreateBookingRequest;
-import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
