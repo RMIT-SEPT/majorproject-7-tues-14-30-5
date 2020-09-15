@@ -232,4 +232,31 @@ public class UserServiceTests {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    //Author: Gav A
+    @Test
+    @DisplayName("updateUser: Password equals Max accepted length of 20 characters - boundary value test")
+    void _9_updateUser_newPassword20CharMaxValue_thenSuccessfullyUpdated() {
+        userService.addUser(user1);
+
+        User newDetailsUser = userService.updateUser("Username", "passwordMaxAcceptVal", "newName",
+                "newLastName", "newAddress", "0505050505");
+
+        assertEquals("passwordMaxAcceptVal", newDetailsUser.getPassword());
+    }
+
+    //Author: Gav A
+    @Test
+    @DisplayName("updateUser: Contact Number is Empty and raises exception")
+    void _10_updateUser_throwsException_contactNoIsEmpty() {
+        userService.addUser(user1);
+
+        Exception exception = assertThrows(UserException.class, ()->
+                userService.updateUser("Username", "newPassword", "newFirstName",
+                        "newLastName", "newAddress", ""));
+
+        String expectedMessage = "Information is not valid";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }
