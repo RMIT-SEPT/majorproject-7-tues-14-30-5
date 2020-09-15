@@ -196,7 +196,7 @@ public class UserServiceTests {
         String actualAddress = userService.findUser("Username").getAddress();
         String expectedAddress = "";
 
-        assertTrue(actualAddress.equals(expectedAddress));
+        assertEquals(actualAddress, expectedAddress);
 
     }
 
@@ -258,5 +258,16 @@ public class UserServiceTests {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    //Author: Hamed A
+    @Test
+    @DisplayName("updateUser: Password is Min Boundary")
+    void _11_updateUser_samePassword_newUser() {
+        userService.addUser(user1);
+        User newUser = userService.updateUser("Username", "pwpw12", "newName",
+                "newLastName", "newAddress", "0505050505");
+
+        Assert.assertEquals(newUser.getPassword(), "pwpw12");
     }
 }
