@@ -40,6 +40,7 @@ public class LoginServiceTests {
         }
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validateLogin: Successful login")
     void _1_validateLogin_successfulLogin_user1() {
@@ -47,6 +48,7 @@ public class LoginServiceTests {
         assertTrue(TestUtilities.sameUser(loggedInUser, user1));
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validateLogin: Username wrong")
     void _2_validateLogin_userNameWrong_Usernam() {
@@ -54,6 +56,7 @@ public class LoginServiceTests {
         assertNull(loggedInUser);
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validateLogin: Password wrong")
     void _3_validateLogin_userNameWrong_Passwor() {
