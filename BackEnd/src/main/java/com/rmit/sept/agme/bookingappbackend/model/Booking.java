@@ -3,7 +3,6 @@ package com.rmit.sept.agme.bookingappbackend.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -25,13 +24,13 @@ public class Booking {
     private User customer;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Service service;
+    private AGMEService service;
     private BigDecimal cost;
 
     private boolean completed;
     private boolean paid;
 
-    public Booking(Date time, Date date, User worker, User customer, Service service, BigDecimal cost) {
+    public Booking(Date time, Date date, User worker, User customer, AGMEService service, BigDecimal cost) {
         this.time = time;
         this.date = date;
         this.worker = worker;
@@ -93,11 +92,11 @@ public class Booking {
         this.customer = customer;
     }
 
-    public Service getService() {
+    public AGMEService getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(AGMEService service) {
         this.service = service;
     }
 

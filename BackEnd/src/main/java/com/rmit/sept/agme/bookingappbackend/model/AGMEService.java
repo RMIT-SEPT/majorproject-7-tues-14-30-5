@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
-public class Service {
+public class AGMEService {
     @Id
     @NotBlank(message = "Service name cannot be empty")
     private String serviceName;
@@ -16,9 +16,9 @@ public class Service {
     @Digits(integer = 5, fraction = 2, message = "Only 2 decimal places allowed for cents")
     private BigDecimal price;
 
-    public Service() {}
+    public AGMEService() {}
 
-    public Service(String serviceName, BigDecimal price) {
+    public AGMEService(String serviceName, BigDecimal price) {
         this.serviceName = serviceName;
         this.price = price;
     }
