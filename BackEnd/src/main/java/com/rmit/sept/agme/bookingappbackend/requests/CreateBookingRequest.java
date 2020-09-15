@@ -10,9 +10,9 @@ import java.util.Date;
  * Class for request '/api/booking/create'
  */
 public class CreateBookingRequest {
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private Date time;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date date;
     @NotBlank(message = "Customer username is required")
     private String customer;
