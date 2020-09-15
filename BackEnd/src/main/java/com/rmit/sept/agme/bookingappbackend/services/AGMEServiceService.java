@@ -11,9 +11,9 @@ import java.util.Optional;
 /**
  * Brilliantly-named
  */
-
 @Service
 public class AGMEServiceService {
+
     @Autowired
     private AGMEServiceRepository agmeServiceRepository;
 
@@ -22,11 +22,13 @@ public class AGMEServiceService {
      * @param service The service to add to AGMEServiceRepository.
      * @return The same user if it succeeds in adding - Otherwise throw a ServiceException.
      */
-//    public AGMEService addService(AGMEService service) {
-//        if (agmeServiceRepository.existsById(service.getServiceName())) {
-//            throw new ServiceException(service.getServiceName() + " is already used");
-//        }
-//    }
+    public AGMEService addService(AGMEService service) {
+        if (agmeServiceRepository.existsById(service.getServiceName())) {
+            throw new ServiceException(service.getServiceName() + " is already used");
+        } else {
+            return agmeServiceRepository.save(service);
+        }
+    }
 
     /**
      * Attempts to find a certain user in UserRepository.
