@@ -24,7 +24,7 @@ public class BookingService {
         User customer = userService.findUser(request.getCustomer());
         User worker = userService.findUser(request.getWorker());
         AGMEService service = agmeServiceService.findService(request.getService());
-        Booking booking = new Booking(request.getTime(), request.getDate(), worker, customer, service, service.getPrice());
+        Booking booking = new Booking(request.getDateTime(), worker, customer, service, service.getPrice());
         return bookingRepository.save(booking);
     }
 

@@ -11,10 +11,8 @@ import java.util.Date;
  */
 public class CreateBookingRequest {
 
-    @JsonFormat(pattern = "HH:mm")
-    private Date time;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm")
+    private Date dateTime;
     @NotBlank(message = "Customer username is required")
     private String customer;
     @NotBlank(message = "Worker username is required")
@@ -22,20 +20,15 @@ public class CreateBookingRequest {
     @NotBlank(message = "Service name is required")
     private String service;
 
-    public CreateBookingRequest(Date time, Date date, String customer, String worker, String service) {
-        this.time = time;
-        this.date = date;
+    public CreateBookingRequest(Date dateTime, String customer, String worker, String service) {
+        this.dateTime = dateTime;
         this.customer = customer;
         this.worker = worker;
         this.service = service;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
-    public Date getDate() {
-        return date;
+    public Date getDateTime() {
+        return dateTime;
     }
 
     public String getCustomer() {

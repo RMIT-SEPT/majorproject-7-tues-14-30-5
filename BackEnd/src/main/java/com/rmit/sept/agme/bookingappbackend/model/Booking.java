@@ -13,10 +13,8 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
-    @JsonFormat(pattern = "HH:mm")
-    private Date time;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm")
+    private Date dateTime;
 
     @ManyToOne(cascade = CascadeType.ALL) // What happens to parent entity will be applied to
     private User worker;
@@ -30,9 +28,8 @@ public class Booking {
     private boolean completed;
     private boolean paid;
 
-    public Booking(Date time, Date date, User worker, User customer, AGMEService service, BigDecimal cost) {
-        this.time = time;
-        this.date = date;
+    public Booking(Date dateTime, User worker, User customer, AGMEService service, BigDecimal cost) {
+        this.dateTime = dateTime;
         this.worker = worker;
         this.customer = customer;
         this.service = service;
@@ -60,20 +57,12 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public User getWorker() {
