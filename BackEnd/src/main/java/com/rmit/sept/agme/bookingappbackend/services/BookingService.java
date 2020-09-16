@@ -27,5 +27,4 @@ public class BookingService {
         Booking booking = new Booking(request.getDateTime(), worker, customer, service, service.getPrice());
         return bookingRepository.save(booking);
     }
-
 }
