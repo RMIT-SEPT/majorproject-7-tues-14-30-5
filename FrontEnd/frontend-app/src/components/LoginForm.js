@@ -19,7 +19,7 @@ export default class LoginForm extends Component {
 		username: this.state.username,
 		password: this.state.password
 	};
-        axios.post('http://localhost:8080/login', data).then(r => console.log(r)).catch(error => console.log(error));
+        axios.post('http://localhost:8080/api/login', data).then(r => console.log(r)).catch(error => console.log(error));
         event.preventDefault()
     }
     formChange(event)
