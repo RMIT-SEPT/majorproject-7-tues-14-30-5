@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { login } from '../../redux'
 
 
@@ -10,6 +11,7 @@ function LoginContainer() {
         password:''
     })
     
+    const history = useHistory()
 
     const loggedIn = useSelector(state => state.login.loggedIn)
     const dispatch = useDispatch()
@@ -18,6 +20,7 @@ function LoginContainer() {
         // console.log('Not Logged in')
     } else {
         console.log('Logged in!')
+        history.push('/')
     }
 
     return (
