@@ -14,7 +14,9 @@ import {
 //     }
 // }
 
+
 export const logout = () => {
+    localStorage.clear()
     return {
         type: LOGOUT
     }

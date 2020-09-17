@@ -1,13 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Navbar, Nav} from "react-bootstrap";
+import { logout } from '../../redux'
 
 function HeaderHooks() {
 
     const loggedIn = useSelector(state => state.login.loggedIn)
     // const user = useSelector(state => state.login.user)
     // const role = useSelector(state => state.login.role)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     if (!loggedIn) {
         return (
@@ -34,7 +35,7 @@ function HeaderHooks() {
                     <Nav.Link href="/contact">Contact Us</Nav.Link>
                 </Nav>
                 <Nav className="ml-auto">
-                    <Nav.Link href="" activeclassname="current">Log Out</Nav.Link>
+                    <Nav.Link href="/" activeclassname="current" onClick={() => dispatch(logout)}>Log Out</Nav.Link>
                 </Nav>
             </Navbar>
         )
