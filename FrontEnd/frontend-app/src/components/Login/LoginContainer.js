@@ -9,6 +9,7 @@ function LoginContainer() {
         username:'',
         password:''
     })
+    
 
     const loggedIn = useSelector(state => state.login.loggedIn)
     const dispatch = useDispatch()
@@ -21,13 +22,16 @@ function LoginContainer() {
 
     return (
         <div>
-            <form onSubmit={() => dispatch(login(customerLogin))}>
+            <form>
                 <label>Username:</label>
                 <input type='text' value={customerLogin.username} onChange={e => setLogin({...customerLogin, username: e.target.value})} placeholder="Username" />
                 <label>Password:</label>
                 <input type='password' value={customerLogin.password} onChange={e => setLogin({...customerLogin, password: e.target.value})} placeholder="Password" />
-                <input type='submit' value='Login' />
+                <input type='button' onClick={()=>dispatch(login(customerLogin))} value='Login'/>
             </form>
+
+            <h2>{JSON.stringify(customerLogin)}</h2>
+            <h2>{JSON.stringify(loggedIn)}</h2>
         </div>
 
     )

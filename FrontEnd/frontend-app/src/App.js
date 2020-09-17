@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {Provider} from 'react-redux'
+import store from './redux/store';
 import './App.css';
 import Welcome from './components/Welcome';
 // import LoginForm from "./components/LoginForm";
@@ -10,7 +11,6 @@ import About from "./components/HomePages/About";
 import Contact from "./components/HomePages/Contact";
 // import RegistrationForm from './components/RegistrationForm';
 import HeaderHooks from './components/Layout/HeaderHooks';
-import store from './redux/store';
 import LoginContainer from './components/Login/LoginContainer'
 
 

@@ -33,9 +33,9 @@ export const loginSuccess = user => {
     }
 }
 
-const loginSuccess = function(user) {
-    return {type: LOGIN_SUCCESS, payload: user}
-}
+// const loginSuccess = function(user) {
+//     return {type: LOGIN_SUCCESS, payload: user}
+// }
 
 export const loginFailure = error => {
     return {
