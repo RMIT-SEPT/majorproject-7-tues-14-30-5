@@ -2,14 +2,15 @@ package com.rmit.sept.agme.bookingappbackend.web;
 
 import com.rmit.sept.agme.bookingappbackend.exceptions.UserException;
 import com.rmit.sept.agme.bookingappbackend.model.User;
-import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import com.rmit.sept.agme.bookingappbackend.requests.UpdateDetailsRequest;
+import com.rmit.sept.agme.bookingappbackend.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,7 +32,7 @@ public class UserController {
      * @param result Validation results
      * @return ResponseEntity of added user if successful - Otherwise field errors or exception message
      */
-    @PostMapping("/registration")
+    @PostMapping(value = "/api/registration")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
 
         if (result.hasErrors()) {

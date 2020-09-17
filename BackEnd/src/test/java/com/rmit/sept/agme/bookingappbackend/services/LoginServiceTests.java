@@ -18,6 +18,7 @@
 //
 //
 //import org.springframework.context.ApplicationContext;
+
 //import static org.assertj.core.api.Assertions.assertThat;
 //
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -44,8 +45,6 @@
 //       // when(repository.save(user2)).thenReturn(user2);
 //        //Assert.assertEquals(user, userService.addUser(user));
 //        //assertThat(loginService.validateLogin("user_person","password_person")).isTrue();
-//
-//
 //
 //    LoginService loginService = new LoginService();
 //    UserService userService = new UserService();
