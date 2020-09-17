@@ -1,5 +1,4 @@
 import {
-    // LOGIN,
     LOGOUT,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
@@ -16,11 +15,6 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        // case LOGIN:
-        //     return {
-        //         ...state,
-        //         loggedIn: true
-        //     }
 
         case LOGOUT:
             return {

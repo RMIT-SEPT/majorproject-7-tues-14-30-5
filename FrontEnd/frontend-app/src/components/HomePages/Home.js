@@ -1,7 +1,5 @@
-// import React, {Component} from 'react'
 import React from 'react'
 import {useSelector} from 'react-redux'
-
 
 function Home() {
 
@@ -17,18 +15,3 @@ function Home() {
 }
 
 export default Home
-
-
-// class Home extends Component {
-
-//     const 
-
-//     render() {
-//         return (
-//             <h1>HOME PAGE HERE</h1>
-
-//         )
-//     }
-// }
-
-// export default Home

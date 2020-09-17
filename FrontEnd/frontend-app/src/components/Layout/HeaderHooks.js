@@ -6,17 +6,15 @@ import { logout } from '../../redux'
 function HeaderHooks() {
 
     const loggedIn = useSelector(state => state.login.loggedIn)
-    // const user = useSelector(state => state.login.user)
-    // const role = useSelector(state => state.login.role)
     const dispatch = useDispatch()
 
     if (!loggedIn) {
         return (
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">AGME</Navbar.Brand>
+                <Navbar.Brand href="/">AGME</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/about">About AGME</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/contact">Contact Us</Nav.Link>
                 </Nav>
                 <Nav className="ml-auto">
@@ -25,13 +23,14 @@ function HeaderHooks() {
                 </Nav>
             </Navbar>
         )
+
     } else {
         return (
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">AGME</Navbar.Brand>
+                <Navbar.Brand href="/">AGME</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/about">About AGME</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/contact">Contact Us</Nav.Link>
                 </Nav>
                 <Nav className="ml-auto">

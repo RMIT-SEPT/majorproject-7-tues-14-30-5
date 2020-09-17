@@ -1,18 +1,10 @@
 import axios from 'axios'
 import {
-    // LOGIN,
     LOGOUT,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGIN_REQUEST
 } from "./loginTypes"
-
-
-// export const login = () => {
-//     return {
-//         type: LOGIN
-//     }
-// }
 
 
 export const logout = () => {
@@ -35,10 +27,6 @@ export const loginSuccess = user => {
     }
 }
 
-// const loginSuccess = function(user) {
-//     return {type: LOGIN_SUCCESS, payload: user}
-// }
-
 export const loginFailure = error => {
     return {
         type: LOGIN_FAILURE,
@@ -47,12 +35,10 @@ export const loginFailure = error => {
 }
 
 export const login = (customerLogin) => {
-    console.log('dispatchlogin is called')
     return (dispatch) => {
         dispatch(loginRequest)
         axios.post('http://localhost:8080/api/login', customerLogin)
         .then(response => {
-            console.log('GOT RESPONSE----!')
             const user = response.data
             dispatch(loginSuccess(user))
         })

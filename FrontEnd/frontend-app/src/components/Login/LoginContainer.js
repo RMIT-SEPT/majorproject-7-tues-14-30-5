@@ -16,10 +16,7 @@ function LoginContainer() {
     const loggedIn = useSelector(state => state.login.loggedIn)
     const dispatch = useDispatch()
 
-    if (!loggedIn) {
-        // console.log('Not Logged in')
-    } else {
-        console.log('Logged in!')
+    if (loggedIn) {
         history.push('/')
     }
 
