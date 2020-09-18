@@ -2,15 +2,23 @@
 //
 //import com.rmit.sept.agme.bookingappbackend.BookingAppBackendApplication;
 //import com.rmit.sept.agme.bookingappbackend.model.User;
+//
 //import com.rmit.sept.agme.bookingappbackend.repositories.UserRepository;
+//import org.junit.Assert;
+//
 //import org.junit.jupiter.api.BeforeAll;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.TestInstance;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.context.ApplicationContext;
 //
+//import org.springframework.boot.test.mock.mockito.MockBean;
+//import static org.assertj.core.api.Assertions.*;
+//import static org.mockito.Mockito.when;
+//
+//
+//import org.springframework.context.ApplicationContext;
+
 //import static org.assertj.core.api.Assertions.assertThat;
 //
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)

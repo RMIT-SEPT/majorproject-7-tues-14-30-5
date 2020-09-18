@@ -3,7 +3,7 @@ package com.rmit.sept.agme.bookingappbackend.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,22 +13,30 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
-    @JsonFormat(pattern = "HH:mm")
-    private Date time;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm")
+    private Date dateTime;
 
     @ManyToOne(cascade = CascadeType.ALL) // What happens to parent entity will be applied to
     private User worker;
     @ManyToOne(cascade = CascadeType.ALL)
     private User customer;
 
-    private String service;
-    private double cost;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private AGMEService service;
+    private BigDecimal cost;
 
     private boolean completed;
     private boolean paid;
 
+    public Booking(Date dateTime, User worker, User customer, AGMEService service, BigDecimal cost) {
+        this.dateTime = dateTime;
+        this.worker = worker;
+        this.customer = customer;
+        this.service = service;
+        this.cost = cost;
+        this.completed = false;
+        this.paid = false;
+    }
 
     public Booking() {
         this.completed = false;
@@ -49,20 +57,12 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public User getWorker() {
@@ -81,19 +81,19 @@ public class Booking {
         this.customer = customer;
     }
 
-    public String getService() {
+    public AGMEService getService() {
         return service;
     }
 
-    public void setService(String service) {
+    public void setService(AGMEService service) {
         this.service = service;
     }
 
-    public double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

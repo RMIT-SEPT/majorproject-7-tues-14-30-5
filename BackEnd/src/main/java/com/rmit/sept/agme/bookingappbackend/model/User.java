@@ -24,9 +24,9 @@ import java.util.Date;
     private String contactNo;
     @NotBlank(message = "Role must be specified")
     private String role;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
     public User() {}
@@ -37,6 +37,10 @@ import java.util.Date;
         this.name = name;
         this.contactNo = contactNo;
         this.role = role;
+
+        this.address = "";
+    }
+
 
     }
 

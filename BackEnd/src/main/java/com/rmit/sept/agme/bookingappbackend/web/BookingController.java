@@ -1,7 +1,8 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
+import com.rmit.sept.agme.bookingappbackend.exceptions.BookingException;
 import com.rmit.sept.agme.bookingappbackend.model.Booking;
-import com.rmit.sept.agme.bookingappbackend.model.User;
+import com.rmit.sept.agme.bookingappbackend.requests.CreateBookingRequest;
 import com.rmit.sept.agme.bookingappbackend.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createNewBooking(@Valid @RequestBody Booking booking, BindingResult result) {
+    public ResponseEntity<?> createNewBooking(@Valid @RequestBody CreateBookingRequest createBookingRequest, BindingResult result) {
 
         if (result.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
@@ -35,9 +36,11 @@ public class BookingController {
             }
         }
 
-        Booking booking1 = bookingService.saveOrUpdateBooking(booking, "something");
-        return new ResponseEntity<Booking>(booking, HttpStatus.CREATED);
-
+        try {
+            Booking newBooking = bookingService.addBooking(createBookingRequest);
+            return new ResponseEntity<Booking>(newBooking, HttpStatus.CREATED);
+        } catch (BookingException e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
-
 }
