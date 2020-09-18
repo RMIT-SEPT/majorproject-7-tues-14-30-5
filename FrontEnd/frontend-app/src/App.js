@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {Provider} from 'react-redux'
 import './App.css';
 import store from './redux/store';
@@ -13,6 +13,8 @@ import CreateBookingContainer from './components/Booking/CreateBookingContainer'
 
 function App() {
 
+  let currentStore = store.getState()
+
   return (
     <Provider store={store}>
       <Router>
@@ -23,7 +25,9 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/login" component={LoginContainer} />
-              <Route path='/booking/create' component={CreateBookingContainer} />
+              <Route path='/booking/create' component={CreateBookingContainer}>
+                {!currentStore.login.loggedIn ? <Redirect to='/login' /> : <CreateBookingContainer />}
+              </Route>
             </Switch>
         </div>
       </Router>
