@@ -20,13 +20,6 @@ public class LoginService {
      * @return Actual user if the entered login information has been successfully validated - Otherwise null.
      */
     public User validateLogin(String username, String password) {
-        //Debugging code primarily for LoginServiceTest - Look at running console when testing
-        Iterable<User> all = userRepository.findAll();
-        System.out.println("\nUsernames are as follows, if nothing is displayed below then there are no users in the database.\n");
-        for (User users : all) {
-            System.out.println(users.getUsername());
-        }
-
         Optional<User> userOpt = userRepository.findById(username);
         if (userOpt.isPresent() && userOpt.get().getUsername().equals(username) && userOpt.get().getPassword().equals(password)) {
             return userOpt.get();

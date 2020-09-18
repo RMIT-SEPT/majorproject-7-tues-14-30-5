@@ -17,7 +17,7 @@ public class UpdateDetailsRequest {
     private String firstName;
     private String lastName;
     private String address;
-    @NotBlank
+    @NotBlank(message = "Contact Number is required")
     private String contactNo;
 
     public UpdateDetailsRequest (String username, String password, String firstName, String lastName, String address, String contactNo) {

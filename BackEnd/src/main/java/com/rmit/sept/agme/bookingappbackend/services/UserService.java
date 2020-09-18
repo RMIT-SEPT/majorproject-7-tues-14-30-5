@@ -24,11 +24,7 @@ public class UserService {
      */
     public User findUser(String username) {
         Optional<User> userOpt = userRepository.findById(username);
-        if (userOpt.isPresent()) {
-            return userOpt.get();
-        } else {
-            return null;
-        }
+        return userOpt.orElse(null);
     }
 
     /**
@@ -81,24 +77,6 @@ public class UserService {
     }
 
     /**
-     * DEPRECIATED - Deletes a user from UserRepository.
-     * @param user The user to delete.
-     */
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
-
-    /**
-     * DEPRECIATED - Retrieves all the users in the UserRepository.
-     * @return Iterable of all users in UserRepository.
-     */
-    public Iterable<User> getUsers() {
-        Iterable<User> users = userRepository.findAll();
-
-        return users;
-    }
-
-    /**
      * HELPER: Validates if the fields to enter are valid/present before proceeding with user updating.
      * @param password The potential new password of the user.
      * @param firstName The potential new first name of the user.
@@ -108,9 +86,7 @@ public class UserService {
     private boolean validateUpdateDetails(String password, String firstName, String contactNo) {
         if (password.length() >= 6 && password.length() <= 20) {
             if (!firstName.isEmpty()) {
-                if (validateContactNoRegex(contactNo)) {
-                    return true;
-                }
+                return validateContactNoRegex(contactNo);
             }
         }
         return false;
@@ -122,11 +98,7 @@ public class UserService {
      * @return True if contactNo passes regex matching [0-9]+
      */
     private boolean validateContactNoRegex(String contactNo) {
-        if (contactNo.matches("[0-9]+")) {
-            return true;
-        } else {
-            return false;
-        }
+        return contactNo.matches("[0-9]+");
     }
 
     /**
@@ -136,10 +108,16 @@ public class UserService {
      * @return True if the role name fits in one of the 3 roles
      */
     private boolean validateRole(String role) {
-        if (role.equals(CUSTOMER) || role.equals(WORKER) || role.equals(ADMIN)) {
-            return true;
-        } else {
-            return false;
+        return role.equals(CUSTOMER) || role.equals(WORKER) || role.equals(ADMIN);
+    }
+
+    /**
+     * HELPER: Used for cleanup in UserServiceTests
+     * @param username The username to find and delete
+     */
+    public void deleteUser(String username) {
+        if (userRepository.existsById(username)) {
+            userRepository.deleteById(username);
         }
     }
 }
