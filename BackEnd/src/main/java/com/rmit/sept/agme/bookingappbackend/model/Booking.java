@@ -3,6 +3,7 @@ package com.rmit.sept.agme.bookingappbackend.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class Booking {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private AGMEService service;
+    @Digits(integer = 6, fraction = 2, message = "Service cost is max 999999.99")
     private BigDecimal cost;
 
     private boolean completed;
@@ -39,12 +41,6 @@ public class Booking {
     }
 
     public Booking() {
-        this.completed = false;
-        this.paid = false;
-    }
-
-    public Booking(User worker) {
-        this.worker = worker;
         this.completed = false;
         this.paid = false;
     }

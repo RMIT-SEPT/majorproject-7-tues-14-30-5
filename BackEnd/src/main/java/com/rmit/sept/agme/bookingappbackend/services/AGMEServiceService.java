@@ -37,10 +37,6 @@ public class AGMEServiceService {
      */
     public AGMEService findService(String serviceName) {
         Optional<AGMEService> serviceOpt = agmeServiceRepository.findById(serviceName);
-        if (serviceOpt.isPresent()) {
-            return  serviceOpt.get();
-        } else {
-            return null;
-        }
+        return serviceOpt.orElse(null);
     }
 }

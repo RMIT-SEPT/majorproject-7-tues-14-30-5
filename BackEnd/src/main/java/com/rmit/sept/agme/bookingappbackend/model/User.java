@@ -12,28 +12,21 @@ import java.util.Date;
  public class User {
 
     @Id
-    @Size(min = 6, max = 20, message = "name must be longer than 6 characters")
+    @Size(min = 6, max = 20, message = "Username must be longer than 6 characters")
     private String username;
-
     @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
     @NotBlank(message = "Password required")
     private String password;
-
     @NotBlank(message = "Name required")
     private String name;
-
     private String address;
-
     @NotBlank(message = "Contact number required")
     private String contactNo;
-
     @NotBlank(message = "Role must be specified")
     private String role;
-
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
-
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
     public User() {}
