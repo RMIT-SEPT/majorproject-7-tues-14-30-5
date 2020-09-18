@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { loginFailure } from '../login/loginActions'
 import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS } from './bookingTypes'
 
 
@@ -23,10 +22,10 @@ export const createBookingFailure = error => {
     }
 }
 
-export const createBooking = () => {
+export const createBooking = newBooking => {
     return (dispatch) => {
         dispatch(createBookingRequest)
-        axios.post(url, data) // Fill this in later
+        axios.post('http://localhost:8080/api/booking/create', newBooking)
         .then(response => {
             const booking = response.data
             dispatch(createBookingSuccess(booking))

@@ -8,9 +8,11 @@ import About from "./components/HomePages/About";
 import Contact from "./components/HomePages/Contact";
 import HeaderHooks from './components/Layout/HeaderHooks';
 import LoginContainer from './components/Login/LoginContainer'
+import CreateBookingContainer from './components/Booking/CreateBookingContainer';
 
 
 function App() {
+
   return (
     <Provider store={store}>
       <Router>
@@ -21,6 +23,7 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/login" component={LoginContainer} />
+              <Route path='/booking/create' component={CreateBookingContainer} />
             </Switch>
         </div>
       </Router>
