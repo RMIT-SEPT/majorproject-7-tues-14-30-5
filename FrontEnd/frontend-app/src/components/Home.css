@@ -1,0 +1,17 @@
+.home{
+  align-items: center;
+}
+
+.home__section {
+    display: flex;
+    padding: 30px;
+    /* align-items: center; */
+
+  }
+
+.datePicker {
+  justify-items: center;
+}
+
+
+   
