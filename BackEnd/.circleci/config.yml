@@ -3,7 +3,7 @@ version: 2
 jobs:
     build:
         
-        working_directory: ~/Backend/src
+        working_directory: ~/src
         
         docker:
             - image: circleci/openjdk:8-jdk-stretch
@@ -17,14 +17,14 @@ jobs:
             - checkout
             
             - restore_cache:
-                key: Backend/src-{{ checksum "pom.xml" }}
+                key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
             
-            - run: maven dependency:go-offline
+            - run: mvn dependency:go-offline
             
             - save_cache:
                 paths:
                     - ~/.m2
-                key: Backend/src-{{ checksum "pom.xml" }}
+                key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
             
             - run: mvn package
             
@@ -32,4 +32,4 @@ jobs:
                 path: target/surefile-reports
             
             - store_artifacts:
-                path: target/Backend/src-0.0.1-SNAPSHOT.jar
+                path: target/booking-app-backend-0.0.1-SNAPSHOT.jar
