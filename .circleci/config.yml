@@ -1,9 +1,9 @@
-version: 2.1
+version: 2
 
 jobs:
     build:
         
-        working_directory: ~/src
+        working_directory: ~/Backend/src
         
         docker:
             - image: circleci/openjdk:8-jdk-stretch
@@ -17,14 +17,14 @@ jobs:
             - checkout
             
             - restore_cache:
-                key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+                key: Backend/src-{{ checksum "pom.xml" }}
             
             - run: maven dependency:go-offline
             
             - save_cache:
                 paths:
                     - ~/.m2
-                key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+                key: Backend/src-{{ checksum "pom.xml" }}
             
             - run: mvn package
             
@@ -32,4 +32,4 @@ jobs:
                 path: target/surefile-reports
             
             - store_artifacts:
-                path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
+                path: target/Backend/src-0.0.1-SNAPSHOT.jar
