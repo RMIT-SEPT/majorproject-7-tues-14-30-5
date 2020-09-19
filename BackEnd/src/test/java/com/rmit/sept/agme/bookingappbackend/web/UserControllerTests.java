@@ -1,6 +1,5 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,9 +25,6 @@ public class UserControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @MockBean
     private UserService userService;
