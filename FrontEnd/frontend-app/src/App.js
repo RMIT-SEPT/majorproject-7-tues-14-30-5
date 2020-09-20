@@ -7,7 +7,7 @@ import Home from './components/HomePages/Home';
 import About from "./components/HomePages/About";
 import Contact from "./components/HomePages/Contact";
 import HeaderHooks from './components/Layout/HeaderHooks';
-import LoginContainer from './components/Login/LoginContainer'
+import LoginForm from './components/Login/LoginForm'
 import CreateBookingContainer from './components/Booking/CreateBookingContainer';
 
 
@@ -24,7 +24,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
-              <Route path="/login" component={LoginContainer} />
+              <Route path="/login" component={LoginForm} />
               <Route path='/booking/create' component={CreateBookingContainer}>
                 {!currentStore.login.loggedIn ? <Redirect to='/login' /> : <CreateBookingContainer />}
               </Route>
