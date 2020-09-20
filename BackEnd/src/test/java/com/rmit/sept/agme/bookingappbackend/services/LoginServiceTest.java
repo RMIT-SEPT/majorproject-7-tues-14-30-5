@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
-public class LoginServiceTests {
+public class LoginServiceTest {
 
     @Autowired
     private LoginService loginService;

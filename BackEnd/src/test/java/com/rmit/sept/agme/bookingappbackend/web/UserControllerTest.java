@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerTests {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,7 +42,6 @@ public class UserControllerTests {
                 post("/api/user/registration")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                        .andExpect(status().isCreated())
-                        .andReturn();
+                        .andExpect(status().isCreated());
     }
 }

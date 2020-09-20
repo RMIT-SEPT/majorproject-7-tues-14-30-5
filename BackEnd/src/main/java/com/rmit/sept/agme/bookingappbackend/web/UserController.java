@@ -32,7 +32,7 @@ public class UserController {
      * @param result Validation results
      * @return ResponseEntity of added user if successful - Otherwise field errors or exception message
      */
-    @PostMapping(value = "/api/registration")
+    @PostMapping(value = "/registration")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
 
         if (result.hasErrors()) {

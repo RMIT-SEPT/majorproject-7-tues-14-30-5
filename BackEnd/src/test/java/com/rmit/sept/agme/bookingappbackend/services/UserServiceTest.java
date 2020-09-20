@@ -6,7 +6,6 @@ import com.rmit.sept.agme.bookingappbackend.testUtilities.TestUtilities;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testng.Assert;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
-public class UserServiceTests {
+public class UserServiceTest {
 
     @Autowired
     private UserService userService;
@@ -122,7 +121,7 @@ public class UserServiceTests {
         userService.addUser(user1);
         User newDetailsUser = userService.updateUser("Username", "newPassword", "newName",
                 "newLastName", "newAddress", "0505050505");
-        Assert.assertFalse(TestUtilities.sameUser(user1, newDetailsUser));
+        assertFalse(TestUtilities.sameUser(user1, newDetailsUser));
     }
 
     //Author: Alan L
@@ -227,8 +226,6 @@ public class UserServiceTests {
         String expectedMessage = "User noUserExists does not exist.";
         String actualMessage = exception.getMessage();
 
-        System.out.println(actualMessage);
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
@@ -268,6 +265,6 @@ public class UserServiceTests {
         User newUser = userService.updateUser("Username", "pwpw12", "newName",
                 "newLastName", "newAddress", "0505050505");
 
-        Assert.assertEquals(newUser.getPassword(), "pwpw12");
+        assertEquals(newUser.getPassword(), "pwpw12");
     }
 }
