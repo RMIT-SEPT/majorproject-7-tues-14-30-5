@@ -3,7 +3,7 @@ version: 2
 jobs:
     build:
         
-        working_directory: ~/Backend/src
+        working_directory: ~/repo/BackEnd
         
         docker:
             - image: circleci/openjdk:8-jdk-stretch
@@ -14,7 +14,8 @@ jobs:
         
         steps:
             
-            - checkout
+            - checkout:
+                path: ~/repo
             
             - restore_cache:
                 key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
@@ -29,7 +30,7 @@ jobs:
             - run: mvn package
             
             - store_test_results:
-                path: target/surefile-reports
+                path: target/surefire-reports
             
             - store_artifacts:
                 path: target/booking-app-backend-0.0.1-SNAPSHOT.jar

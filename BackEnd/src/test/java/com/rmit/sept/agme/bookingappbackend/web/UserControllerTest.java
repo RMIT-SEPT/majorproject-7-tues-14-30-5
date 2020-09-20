@@ -1,5 +1,6 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerTests {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private UserService userService;
@@ -38,7 +42,6 @@ public class UserControllerTests {
                 post("/api/user/registration")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                        .andExpect(status().isCreated())
-                        .andReturn();
+                        .andExpect(status().isCreated());
     }
 }
