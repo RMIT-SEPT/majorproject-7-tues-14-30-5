@@ -1,22 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import {Provider} from 'react-redux'
-import './App.css';
-import store from './redux/store';
-import Home from './components/HomePages/Home';
-import About from "./components/HomePages/About";
-import Contact from "./components/HomePages/Contact";
-import HeaderHooks from './components/Layout/HeaderHooks';
+import './App.css'
+import store from './redux/store'
+import About from './components/Home/About'
+import Header from './components/Layout/Header'
+import Contact from './components/Home/Contact'
+import Home from './components/Home/Home'
 import LoginForm from './components/Login/LoginForm'
-import CreateBookingContainer from './components/Booking/CreateBookingContainer';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import './App.css';
-import LoginForm from './components/Login/LoginForm';
-import Header from "./components/Layout/Header";
-import Home from "./components/Home/Home";
-import BookingPage from "./components/Booking/BookingPage"
-import Booking_History from './components/Booking/BookingHistory';
+import CreateBookingContainer from './components/Booking/CreateBookingContainer'
+import Booking_History from './components/Booking/BookingHistory'
 
 
 function App() {
@@ -27,7 +20,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-            <HeaderHooks />
+            <Header />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
@@ -36,29 +29,12 @@ function App() {
               <Route path='/booking/create' component={CreateBookingContainer}>
                 {!currentStore.login.loggedIn ? <Redirect to='/login' /> : <CreateBookingContainer />}
               </Route>
+              <Route path='/booking/history' component={Booking_History} />
             </Switch>
         </div>
       </Router>
     </Provider>
   )
-
-  // <div className="app">
-  //     <Router>
-  //       <Header />
-  //       <Switch>
-  //         <Route path="/booking">
-  //           <BookingPage />
-  //         </Route>
-  //         <Route path='login' component={LoginForm} />
-  //         <Route path='/history' component={Booking_History}/>
-  //         <Route exact path="/">
-  //           <Home />
-  //         </Route>
-  //       </Switch>
-  
-  //     </ Router>
-  //   </div>
-  //   )
     
 }
 
