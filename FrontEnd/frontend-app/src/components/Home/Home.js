@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import "./Home.css";
-import Card from "./Card";
+import { useHistory } from "react-router-dom";
 import DateTimePicker from 'react-datetime-picker';
 
-import Legal from ".././images/legal.jpg";
-import Barber from ".././images/barber.jpg";
-import trainer from ".././images/personal_training.jpg";
-import Accounting from ".././images/accounting.jpg";
-import spa from ".././images/spa.jpg";
-import tutor from ".././images/tutoring.jpg";
-import { Link } from "react-router-dom";
-
-import { useHistory } from "react-router-dom";
+import "./Home.css";
+import Card from "./Card";
 import Popup from './Popup.js';
+
+import legal from "../../public/images/legal.jpg"
+import barber from "../../public/images/barber.jpg";
+import trainer from "../../public/images/personal_training.jpg";
+import accounting from "../../public/images/accounting.jpg";
+import spa from "../../public/images/spa.jpg";
+import tutor from "../../public/images/tutoring.jpg";
+
 
 // import { useHistory } from "react-router-dom";
 
@@ -49,7 +49,7 @@ function Home() {
 
             <div onClick={() => { setIsClick(true) }}>
                 <Card
-                src={Legal}
+                src={legal}
                 title="Pearson Spector - Law Firm"
                 description="Expert Legal services, led by a team of exceptional Attorneys."
                 />
@@ -57,7 +57,7 @@ function Home() {
 
             <div onClick={() => history.push('/booking')}>
                 <Card
-                src={Barber}
+                src={barber}
                 title="Bristol Barbers"
                 description="Beautiful hair in professional hands."
                 />
@@ -72,7 +72,7 @@ function Home() {
 
       <div className="home__section">
         <Card
-            src={Accounting}
+            src={accounting}
             title="Litt Accounting Inc."
             description="Big firm capability. Small firm personality."
             />

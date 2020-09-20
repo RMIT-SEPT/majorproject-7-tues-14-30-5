@@ -1,9 +1,5 @@
-import { Button } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import "./Card.css";
-import Popup from './Popup.js';
-
-
   
     // <Button variant="primary" onClick={() => setShow(true)}>
     //       Custom Width Modal
@@ -20,12 +16,10 @@ function Card({ src, title, description, price }) {
   // }
 
 
-  const [isClick, setIsClick] = useState(false);
+  // const [isClick, setIsClick] = useState(false);
 
 
-
-
-  console.log("value at 26 = ",isClick);
+  // console.log("value at 26 = ",isClick);
   return (
     <div className="card">
           <img src={src} alt="" />

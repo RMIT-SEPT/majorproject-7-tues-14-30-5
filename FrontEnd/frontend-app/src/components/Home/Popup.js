@@ -1,9 +1,6 @@
-import React,{useState, useEffect} from "react";
-import { Button } from "@material-ui/core";
+import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import "./Popup.css"
-
-
 
 
 //{value, setValue})

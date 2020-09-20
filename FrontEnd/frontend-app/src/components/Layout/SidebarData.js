@@ -1,9 +1,9 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import Icon from '@material-ui/core/Icon';
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+// import * as FaIcons from 'react-icons/fa';
+// import * as AiIcons from 'react-icons/ai';
+// import * as IoIcons from 'react-icons/io';
+// import Icon from '@material-ui/core/Icon';
+// import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';

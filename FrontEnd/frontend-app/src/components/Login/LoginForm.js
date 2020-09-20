@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
-import Logo from "../Logo.png";
+import Logo from "../../public/logo/Logo.png";
 import axios from "axios";
 import "./loginForm.css";
 

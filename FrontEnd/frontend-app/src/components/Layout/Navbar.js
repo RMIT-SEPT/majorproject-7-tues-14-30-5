@@ -6,13 +6,14 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 
+
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <>
+    <div>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
           <Link to='#' className='menu-bars'>
@@ -39,8 +40,8 @@ function Navbar() {
           </ul>
         </nav>
       </IconContext.Provider>
-    </>
-  );
+    </div>
+  )
 }
 
 export default Navbar;
