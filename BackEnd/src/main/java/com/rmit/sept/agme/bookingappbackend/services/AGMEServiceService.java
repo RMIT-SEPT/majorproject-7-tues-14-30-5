@@ -39,4 +39,14 @@ public class AGMEServiceService {
         Optional<AGMEService> serviceOpt = agmeServiceRepository.findById(serviceName);
         return serviceOpt.orElse(null);
     }
+
+    /**
+     * HELPER: Used for cleanup in AGMEServiceServiceTests
+     * @param serviceName The service name to find and delete
+     */
+    public void deleteService(String serviceName) {
+        if (agmeServiceRepository.existsById(serviceName)) {
+            agmeServiceRepository.deleteById(serviceName);
+        }
+    }
 }

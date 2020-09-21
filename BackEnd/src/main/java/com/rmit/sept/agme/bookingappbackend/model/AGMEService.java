@@ -13,7 +13,7 @@ public class AGMEService {
     @NotBlank(message = "Service name cannot be empty")
     private String serviceName;
     @NotNull
-    @Digits(integer = 5, fraction = 2, message = "Only 2 decimal places allowed for cents")
+    @Digits(integer = 5, fraction = 2, message = "Allowed values include 5 digits and 2 decimal places")
     private BigDecimal price;
 
     public AGMEService() {}

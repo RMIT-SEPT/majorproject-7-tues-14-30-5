@@ -33,6 +33,5 @@ public class BookingService {
         } else {
             throw new BookingException("Cannot book before today");
         }
-
     }
 }
