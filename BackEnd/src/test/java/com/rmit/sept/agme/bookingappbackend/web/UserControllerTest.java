@@ -1,10 +1,8 @@
 package com.rmit.sept.agme.bookingappbackend.web;
 
-import com.rmit.sept.agme.bookingappbackend.repositories.UserRepository;
+import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.services.UserService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * void _testNum_methodTesting_ExpectedValue_Input() {}
  */
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserControllerTest {
@@ -28,11 +27,18 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private UserService service;
+    private UserService userService;
+
+    private User user1;
+
+    @BeforeAll
+    void setUp() {
+        user1 = new User("Username", "Password", "PersonName", "123456789", "customer", "Address");
+    }
 
     @AfterEach
     void cleanUp() {
-        service.deleteUser("Username");
+        userService.deleteUser("Username");
     }
 
     @Test
@@ -44,7 +50,7 @@ public class UserControllerTest {
                 post("/api/user/registration")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                        .andExpect(status().isCreated());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -210,6 +216,203 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 post("/api/user/registration")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("createNewUser: User already exists")
+    void _16_createNewUser_isBadRequest_UsernameAlreadyInDB() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"Password\",\"name\":\"PersonName\",\"contactNo\":\"123456789\",\"role\":\"customer\"}";
+
+        mockMvc.perform(
+                post("/api/user/registration")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json));
+
+        mockMvc.perform(
+                post("/api/user/registration")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Successfully update details")
+    void _1_updateUser_isCreated_CorrectDetailsJson() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    @DisplayName("updateUser: User does not exist in database")
+    void _2_updateUser_isBadRequest_CorrectDetailsJson() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Username is empty")
+    void _3_updateUser_isBadRequest_UsernameEmpty() throws Exception {
+        String json = "{\"username\":\"\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Username is below 6 characters")
+    void _4_updateUser_isBadRequest_Username5Characters() throws Exception {
+        String json = "{\"username\":\"Usern\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Username is above 20 characters")
+    void _5_updateUser_isBadRequest_Username21Characters() throws Exception {
+        String json = "{\"username\":\"UsernameIsAboveTwenty\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Password is empty")
+    void _6_updateUser_isBadRequest_PasswordEmpty() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Password is below 6 characters")
+    void _7_updateUser_isBadRequest_Password5Characters() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPa\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Password is above 20 characters")
+    void _8_updateUser_isBadRequest_Password21Characters() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPasswordIsAboveTwe\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: First name is empty")
+    void _9_updateUser_isBadRequest_FirstNameEmpty() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Last name is empty")
+    void _10_updateUser_isCreated_LastNameEmpty() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"\",\"address\":\"NewAddress\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    @DisplayName("updateUser: Address is empty")
+    void _11_updateUser_isCreated_AddressEmpty() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"\",\"contactNo\":\"987654321\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    @DisplayName("updateUser: Contact Number is empty")
+    void _12_updateUser_isBadRequest_ContactNumberEmpty() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("updateUser: Contact Number is not numerical")
+    void _13_updateUser_isBadRequest_ContactNumberNotNumber() throws Exception {
+        String json = "{\"username\":\"Username\",\"password\":\"NewPassword\",\"firstName\":\"PersonNew\",\"lastName\":\"NamePerson\",\"address\":\"NewAddress\",\"contactNo\":\"NotANumber\"}";
+
+        userService.addUser(user1);
+
+        mockMvc.perform(
+                post("/api/user/update")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isBadRequest());
