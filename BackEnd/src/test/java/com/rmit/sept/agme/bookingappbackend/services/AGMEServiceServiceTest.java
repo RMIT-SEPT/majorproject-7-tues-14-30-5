@@ -35,6 +35,7 @@ public class AGMEServiceServiceTest {
         agmeServiceService.deleteService(service1.getServiceName());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("addService: Successfully adding a service")
     void _1_addService_True_service1() {
@@ -42,6 +43,7 @@ public class AGMEServiceServiceTest {
         assertTrue(TestUtilities.sameService(service1, addedService));
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("addService: Service already exists")
     void _2_addService_ThrowsServiceExceptionAndOutputMessage_service1Twice() {

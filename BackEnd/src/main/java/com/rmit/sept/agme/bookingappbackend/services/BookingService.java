@@ -24,14 +24,34 @@ public class BookingService {
     private AGMEServiceService agmeServiceService;
 
     public Booking addBooking(CreateBookingRequest request) {
-        if (request.getDateTime().after(new Date())) {
-            User customer = userService.findUser(request.getCustomer());
+        Date current = new Date();
+        if (request.getDateTime().after(current)) {
             User worker = userService.findUser(request.getWorker());
             AGMEService service = agmeServiceService.findService(request.getService());
-            Booking booking = new Booking(request.getDateTime(), worker, customer, service, service.getPrice());
-            return bookingRepository.save(booking);
+            User customer = userService.findUser(request.getCustomer());
+            if (worker.equals(null)) {
+                throw new BookingException("Worker not found");
+            } else if (service.equals(null)) {
+                throw new BookingException("Service not found");
+            } else if (customer.equals(null)) {
+                throw new BookingException("Customer account has been deleted");
+            } else {
+                Booking booking = new Booking(request.getDateTime(), worker, customer, service, service.getPrice());
+                System.out.println("BOOKING ID IS: " + booking.getBookingId());
+                return bookingRepository.save(booking);
+            }
         } else {
             throw new BookingException("Cannot book before today");
+        }
+    }
+
+    /**
+     * HELPER: Used for cleanup in BookingServiceTests
+     * @param bookingID The booking ID to find and delete
+     */
+    public void deleteBooking(long bookingID) {
+        if (bookingRepository.existsById(bookingID)) {
+            bookingRepository.deleteById(bookingID);
         }
     }
 }
