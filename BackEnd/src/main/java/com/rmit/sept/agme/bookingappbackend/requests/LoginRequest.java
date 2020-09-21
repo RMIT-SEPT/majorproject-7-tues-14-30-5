@@ -7,10 +7,8 @@ import javax.validation.constraints.Size;
  * Class for request '/api/login'
  */
 public class LoginRequest {
-    @Size(min = 6, max = 20, message = "Username must be longer than 6 characters")
     @NotBlank(message = "Username required")
     private String username;
-    @Size(min = 6, max = 20, message = "Password must be longer than 6 characters")
     @NotBlank(message = "Password required")
     private String password;
 

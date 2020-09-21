@@ -106,7 +106,7 @@ public class UserServiceTest {
     //Author: Gav A
     @Test
     @DisplayName("addUseR: Adding New user with Empty Contact Number - Raises Exception")
-    void addingUser_withEmptyContactNumber_raisesException() {
+    void _5_addingUser_withEmptyContactNumber_raisesException() {
         Exception exception = assertThrows(UserException.class, ()->userService.addUser(user4));
 
         String expectedMessage = " is not a valid contact number.";
