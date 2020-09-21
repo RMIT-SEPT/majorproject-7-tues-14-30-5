@@ -8,7 +8,7 @@ import {
 
 
 export const logout = () => {
-    localStorage.clear()
+    sessionStorage.clear()
     return {
         type: LOGOUT
     }
