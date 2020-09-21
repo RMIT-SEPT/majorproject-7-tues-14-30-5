@@ -41,6 +41,7 @@ public class LoginControllerTest {
         userService.deleteUser(user1.getUsername());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Successfully log in")
     void _1_validate_isOk_validCredentials() throws Exception {
@@ -55,6 +56,7 @@ public class LoginControllerTest {
                 .andExpect(status().isOk());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Cannot log in - User doesn't exist")
     void _2_validate_isBadRequest_validCredentials() throws Exception {
@@ -67,6 +69,7 @@ public class LoginControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Cannot log in - Username misspelt")
     void _3_validate_isBadRequest_UsernameWrong() throws Exception {
@@ -81,6 +84,7 @@ public class LoginControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Cannot log in - Password misspelt")
     void _4_validate_isBadRequest_PasswordWrong() throws Exception {
@@ -95,6 +99,7 @@ public class LoginControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Cannot log in - Username empty")
     void _5_validate_isBadRequest_UsernameEmpty() throws Exception {
@@ -109,6 +114,7 @@ public class LoginControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("validate: Cannot log in - Password empty")
     void _6_validate_isBadRequest_PasswordEmpty() throws Exception {

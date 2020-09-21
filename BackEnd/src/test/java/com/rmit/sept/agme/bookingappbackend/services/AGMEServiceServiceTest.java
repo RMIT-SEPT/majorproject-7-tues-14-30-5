@@ -57,6 +57,7 @@ public class AGMEServiceServiceTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("findService: Service is successfully found")
     void _1_findService_True_service1() {
@@ -64,6 +65,7 @@ public class AGMEServiceServiceTest {
         assertTrue(TestUtilities.sameService(service1, agmeServiceService.findService(service1.getServiceName())));
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("findService: Service is not found")
     void _2_findService_Null_service1() {

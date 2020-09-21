@@ -43,6 +43,7 @@ public class AGMEServiceControllerTest {
         agmeServiceService.deleteService("ServiceName");
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Successfully creates a new service")
     void _1_createNewService_isCreated_CorrectDetails() throws Exception {
@@ -55,6 +56,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Service already exists")
     void _2_createNewService_isBadRequest_CorrectDetails() throws Exception {
@@ -69,6 +71,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Service Name is empty")
     void _3_createNewService_isBadRequest_ServiceNameEmpty() throws Exception {
@@ -81,6 +84,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Service Price is empty")
     void _4_createNewService_isBadRequest_PriceEmpty() throws Exception {
@@ -93,6 +97,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price larger than 5 digits")
     void _5_createNewService_isBadRequest_Price6Digits() throws Exception {
@@ -105,6 +110,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price at 5 digits")
     void _6_createNewService_isCreated_Price5Digits() throws Exception {
@@ -117,6 +123,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price has 0 decimal places")
     void _7_createNewService_isCreated_Price0DecimalPlace() throws Exception {
@@ -129,6 +136,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price has 1 decimal places")
     void _8_createNewService_isCreated_Price1DecimalPlace() throws Exception {
@@ -141,6 +149,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price has 2 decimal places")
     void _9_createNewService_isCreated_Price2DecimalPlace() throws Exception {
@@ -153,6 +162,7 @@ public class AGMEServiceControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewService: Price has more than 2 decimal places")
     void _10_createNewService_isBadRequest_Price3DecimalPlace() throws Exception {

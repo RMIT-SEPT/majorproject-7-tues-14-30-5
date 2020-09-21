@@ -41,6 +41,7 @@ public class UserControllerTest {
         userService.deleteUser("Username");
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Creating a new customer w/out address; retrieving Https Response - Successfully")
     void _1_createNewUser_isCreated_CorrectDetailsNoAddressCustomer() throws Exception {
@@ -53,6 +54,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Creating a new customer w/address; retrieving Https Response - Successfully")
     void _2_createNewUser_isCreated_CorrectDetailsCustomer() throws Exception {
@@ -65,6 +67,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Creating a new worker w/out address; retrieving Https Response - Successfully")
     void _3_createNewUser_isCreated_CorrectDetailsNoAddressCustomer() throws Exception {
@@ -77,6 +80,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Creating a new admin w/out address; retrieving Https Response - Successfully")
     void _4_createNewUser_isCreated_CorrectDetailsNoAddressCustomer() throws Exception {
@@ -89,6 +93,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Missing username")
     void _5_createNewUser_isBadRequest_MissingUsername() throws Exception {
@@ -101,6 +106,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Username below 6 characters")
     void _6_createNewUser_isBadRequest_Username5Characters() throws Exception {
@@ -113,6 +119,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Username above 20 characters")
     void _7_createNewUser_isBadRequest_Username21Characters() throws Exception {
@@ -125,6 +132,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Missing password")
     void _8_createNewUser_isBadRequest_MissingPassword() throws Exception {
@@ -137,6 +145,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Password below 6 characters")
     void _9_createNewUser_isBadRequest_Password5Characters() throws Exception {
@@ -149,6 +158,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Password above 20 characters")
     void _10_createNewUser_isBadRequest_Password21Characters() throws Exception {
@@ -161,6 +171,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Name is blank")
     void _11_createNewUser_isBadRequest_NameBlank() throws Exception {
@@ -173,6 +184,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Contact Number is blank")
     void _12_createNewUser_isBadRequest_ContactNumBlank() throws Exception {
@@ -185,6 +197,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Contact Number is not made of numbers")
     void _13_createNewUser_isBadRequest_ContactNumNotNum() throws Exception {
@@ -197,6 +210,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Role is blank")
     void _14_createNewUser_isBadRequest_RoleBlank() throws Exception {
@@ -209,6 +223,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: Role is not correct")
     void _15_createNewUser_isBadRequest_RoleIscustoma() throws Exception {
@@ -221,6 +236,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("createNewUser: User already exists")
     void _16_createNewUser_isBadRequest_UsernameAlreadyInDB() throws Exception {
@@ -238,6 +254,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Successfully update details")
     void _1_updateUser_isCreated_CorrectDetailsJson() throws Exception {
@@ -252,6 +269,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: User does not exist in database")
     void _2_updateUser_isBadRequest_CorrectDetailsJson() throws Exception {
@@ -264,6 +282,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Username is empty")
     void _3_updateUser_isBadRequest_UsernameEmpty() throws Exception {
@@ -278,6 +297,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Username is below 6 characters")
     void _4_updateUser_isBadRequest_Username5Characters() throws Exception {
@@ -292,6 +312,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Username is above 20 characters")
     void _5_updateUser_isBadRequest_Username21Characters() throws Exception {
@@ -306,6 +327,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Password is empty")
     void _6_updateUser_isBadRequest_PasswordEmpty() throws Exception {
@@ -320,6 +342,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Password is below 6 characters")
     void _7_updateUser_isBadRequest_Password5Characters() throws Exception {
@@ -334,6 +357,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Password is above 20 characters")
     void _8_updateUser_isBadRequest_Password21Characters() throws Exception {
@@ -348,6 +372,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: First name is empty")
     void _9_updateUser_isBadRequest_FirstNameEmpty() throws Exception {
@@ -362,6 +387,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Last name is empty")
     void _10_updateUser_isCreated_LastNameEmpty() throws Exception {
@@ -376,6 +402,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Address is empty")
     void _11_updateUser_isCreated_AddressEmpty() throws Exception {
@@ -390,6 +417,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Contact Number is empty")
     void _12_updateUser_isBadRequest_ContactNumberEmpty() throws Exception {
@@ -404,6 +432,7 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //Author: Matt D
     @Test
     @DisplayName("updateUser: Contact Number is not numerical")
     void _13_updateUser_isBadRequest_ContactNumberNotNumber() throws Exception {
