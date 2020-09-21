@@ -37,7 +37,6 @@ public class BookingService {
                 throw new BookingException("Customer account has been deleted");
             } else {
                 Booking booking = new Booking(request.getDateTime(), worker, customer, service, service.getPrice());
-                System.out.println("BOOKING ID IS: " + booking.getBookingId());
                 return bookingRepository.save(booking);
             }
         } else {
