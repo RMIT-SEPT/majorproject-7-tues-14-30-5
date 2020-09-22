@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact Class Snapshot is Matched 1`] = `
+<div>
+  <h1>
+    CONTACT PAGE HERE
+  </h1>
+</div>
+`;

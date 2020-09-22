@@ -7,7 +7,7 @@ import {
 } from "./loginTypes"
 
 
-export const logout = () => {
+export const logout_confirm = () => {
     sessionStorage.clear()
     return {
         type: LOGOUT
@@ -46,5 +46,11 @@ export const login = (customerLogin) => {
             const errorMsg = error.message
             dispatch(loginFailure(errorMsg))
         })
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        dispatch(logout_confirm)
     }
 }

@@ -8,14 +8,14 @@ export const createBookingRequest = () => {
     }
 }
 
-export const createBookingSuccess = booking => {
+export const createBookingSuccess = (booking) => {
     return {
         type: CREATE_BOOKING_SUCCESS,
         payload: booking
     }
 }
 
-export const createBookingFailure = error => {
+export const createBookingFailure = (error) => {
     return {
         type: CREATE_BOOKING_FAILURE,
         payload: error

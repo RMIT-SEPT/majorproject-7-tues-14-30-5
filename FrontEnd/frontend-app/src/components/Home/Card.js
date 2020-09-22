@@ -21,7 +21,7 @@ function Card({ src, title, description, price }) {
 
   // console.log("value at 26 = ",isClick);
   return (
-    <div className="card">
+    <div className="card" data-testid = "card-test">
           <img src={src} alt="" />
           <div className="card__info">
             <h2>{title}</h2>

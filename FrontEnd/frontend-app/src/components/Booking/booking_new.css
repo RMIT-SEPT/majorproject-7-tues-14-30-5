@@ -1,0 +1,45 @@
+#booking {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: #423f60;
+  }
+  
+#booking__container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    /* border: 1px solid lightgray; */
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 40vw;
+  
+    /* background: #FBFBFB; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+
+  #dateSelect{
+    background-color: aliceblue;
+    margin-top: -20% ;
+    margin-bottom: 20%;
+  }
+
+  #select__service > label {
+    color: white;
+    margin-bottom: 10%;
+   
+  }
+
+
+  #select__worker > label{
+      color: white;
+      margin-bottom: 20%;
+  }
+
+
+

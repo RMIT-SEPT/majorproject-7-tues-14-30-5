@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches-snapshot 1`] = `
+<div
+  className="card"
+  data-testid="card-test"
+>
+  <img
+    alt=""
+    src="legal.jpg"
+  />
+  <div
+    className="card__info"
+  >
+    <h2>
+      Pearson Spector - Law Firm
+    </h2>
+    <h4>
+      Expert Legal services, led by a team of exceptional Attorneys.
+    </h4>
+    <h3 />
+  </div>
+</div>
+`;

@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background-color: #060A26;
 }
 
 .login__container {
@@ -17,19 +17,22 @@
   justify-content: center;
   height: 60vh;
   width: 40vw;
-  background-color: #423f60;
+  background-color: #060A26;
+
   /* background: #FBFBFB; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  margin-top: -10vh;
 }
 
 .loginBox__logo{
     display: flex;
     object-fit: contain;
     height: 100px;
-    margin-bottom: 5vh;
+    margin-bottom: 8vh;
     
 }
+
 
 .login__container > form > form[username] {
   position: relative;
@@ -41,6 +44,22 @@
 }
 
 .login__container > form > form[password] {
+  height: 5vh;
+  margin-bottom: 2em;
+  /* background-color: #E2E2E2; */
+  width: 22em;
+  border: none;
+}
+
+#username > input{
+  height: 5vh;
+  margin-bottom: 2em;
+  /* background-color: #E2E2E2; */
+  width: 22em;
+  border: none;
+}
+
+#password > input{
   height: 5vh;
   margin-bottom: 2em;
   /* background-color: #E2E2E2; */

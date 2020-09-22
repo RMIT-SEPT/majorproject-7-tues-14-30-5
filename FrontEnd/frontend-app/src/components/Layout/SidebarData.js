@@ -17,13 +17,13 @@ export const SidebarData = [
   },
   {
     title: 'Book Service',
-    path: '/booking',
+    path: '/booking/create',
     icon: <AddCircleOutlineRoundedIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Past Bookings',
-    path: '/history',
+    path: '/booking/history',
     icon: <HistoryRoundedIcon />,
     cName: 'nav-text'
   },
