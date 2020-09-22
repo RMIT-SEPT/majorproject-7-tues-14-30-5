@@ -10,6 +10,7 @@ import Home from './components/Home/Home'
 import LoginForm from './components/Login/LoginForm'
 import CreateBookingContainer from './components/Booking/CreateBookingContainer'
 import Booking_History from './components/Booking/BookingHistory'
+import RegistrationForm from './components/Registration/RegistrationForm';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/login" component={LoginForm} />
+              <Route path='/registration' component={RegistrationForm} />
               <Route path='/booking/create' component={CreateBookingContainer}>
                 {!currentStore.login.loggedIn ? <Redirect to='/login' /> : <CreateBookingContainer />}
               </Route>
