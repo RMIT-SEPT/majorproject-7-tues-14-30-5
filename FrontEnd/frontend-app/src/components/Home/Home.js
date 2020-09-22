@@ -55,7 +55,7 @@ function Home() {
                 />
             </div>
 
-            <div onClick={() => history.push('/booking')}>
+            <div onClick={() => history.push('/booking/create')}>
                 <Card
                 src={barber}
                 title="Bristol Barbers"

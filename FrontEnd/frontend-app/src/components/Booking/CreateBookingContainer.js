@@ -20,7 +20,7 @@ function CreateBookingContainer() {
     const [bookingDateTime, setBookingDateTime] = useState(new Date());
     
     const [newBooking, setNewBooking] = useState({
-        dateTime: '2020-10-22T04:21:09.921Z',
+        dateTime: '2020-10-22T18:21:09.921Z',
         customer: currentUser,
         worker: '',
         service: ''
@@ -52,12 +52,12 @@ function CreateBookingContainer() {
                     <option value='worker'>Worker</option>
                     <option value='worker2'>Worker2</option>
                 </select>
-                <input type='button' onClick={() => dispatch(createBooking(newBooking))} value='Create Booking' />
+                <input type='button' onClick={() => {setNewBooking({...newBooking, dateTime: bookingDateTime}); dispatch(createBooking(newBooking))}} value='Create Booking' />
             </form>
 
             {!booking.justBooked ?
                 <>
-                    <h2>{JSON.stringify(newBooking.dateTime)}</h2>
+                    <h2>{JSON.stringify(bookingDateTime)}</h2>
                     <h2>{JSON.stringify(newBooking.service)}</h2>
                     <h2>{JSON.stringify(newBooking.worker)}</h2>
                     <h2>{JSON.stringify(newBooking.customer)}</h2>
@@ -65,7 +65,7 @@ function CreateBookingContainer() {
 
                 :
 
-                <h2>Your booking for {booking.booking.service} has been confirmed</h2>
+                <h2>Your booking for a {booking.booking.service.serviceName} has been confirmed</h2>
 
             }
         </div>
