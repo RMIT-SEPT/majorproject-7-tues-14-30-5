@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import './RegistrationForm.css'
 export default class RegistrationForm extends Component {
 
     constructor(props) {
@@ -43,7 +43,7 @@ export default class RegistrationForm extends Component {
             
         } else {
 
-            axios.post('http://localhost:8080/api/registration', user)
+            axios.post('http://localhost:8080/api/user/registration', user)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -86,7 +86,7 @@ export default class RegistrationForm extends Component {
                         <label>Contact Number:</label>
                         <input type='text' className='form-control' id='contactNo"' placeholder='Enter contact' name='contactNo' value={contactNo} onChange={this.handleChange} />
                     </div>
-                    <button type='submit' className='btn-default'>Submit</button>
+                    <button type='submit' className='button'>SIGN UP</button>
                 </form>
             </div>
         )

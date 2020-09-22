@@ -29,6 +29,10 @@ function Header() {
                 }
                 
                 <button className="Contact__button" onClick={() => history.push('/contact')} >CONTACT</button>
+                <button className="Abt__button" onClick={() => history.push('/about')} >ABOUT</button>
+                <button className="regist__button" onClick={() => history.push('/registration')} >SIGN UP</button>
+
+
             </div>
 
       
