@@ -1,0 +1,57 @@
+/* .button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+
+
+.button {
+box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+background-color: aquamarine;
+ }
+
+.button:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.button{
+    
+    
+    /* background: none;
+    backface-visibility: hidden; */
+
+    background-color: Transparent;
+    /* background-repeat:no-repeat; */
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    width:9%;
+    height:30px;
+    
+    background-color: #060A26;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    color: white;
+    margin-bottom: 1.5em;
+    
+}
+.form-control{
+
+    margin-left: 40%;
+    width: 20%;
+    justify-content: center;
+    align-content: center;
+
+
+}
+
+.form-group{
+    justify-content: space-between;
+
+    margin-top: 1%;
+}
