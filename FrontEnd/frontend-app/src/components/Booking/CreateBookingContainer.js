@@ -8,60 +8,66 @@ import { useHistory } from 'react-router-dom';
 function CreateBookingContainer() {
 
     const history = useHistory()
+    const dispatch = useDispatch()
+
     const loggedIn = useSelector(state => state.login.loggedIn)
     const currentUser = useSelector(state => state.login.user.username)
-    if (!loggedIn) {
-        history.pushState('/login')
-    }
-
-
-    // For selecting datelogin. and time
-    const [dateTime, setDateTime] = useState(new Date());
-
-    // Dummy booking for test purposes
-    // const [newBooking, setNewBooking] = useState({
-    //     dateTime: '',
-    //     customer: 'username',
-    //     worker: 'worker',
-    //     service: 'Barber'
-    // })
+    // const justBooked = useSelector(state => state.booking.justBooked)
+    const booking = useSelector(state => state.booking)
+    
+    
+    // For selectingbooking. datelogin. and time
+    const [bookingDateTime, setBookingDateTime] = useState(new Date());
     
     const [newBooking, setNewBooking] = useState({
-        bookingDateTime: '',
+        dateTime: '2020-10-22T04:21:09.921Z',
         customer: currentUser,
-        worker: 'worker',
+        worker: '',
         service: ''
     })
 
-    const dispatch = useDispatch()
     
-    
+    if (!loggedIn) {
+        history.pushState('/login')
+    }
 
     return (
         <div>
             <div className="datePicker">
                 <div id="dateSelect" >
-                <DateTimePicker onChange={setDateTime} value={dateTime} />
+                <DateTimePicker onChange={setBookingDateTime} value={bookingDateTime} />
                 </div>
             </div>
             <form>
                 <label>Select Service</label>
-                <select value={newBooking.service} onChange={e => setNewBooking({...newBooking, service: e.target.value})} placeholder='Service'>
+                <select onChange={e => setNewBooking({...newBooking, service: e.target.value})} placeholder='Service'>
+                    <option defaultValue=''> -- select an option -- </option>
                     <option value='Barber'>Barber</option>
                     <option value='Lawyer'>Lawyer</option>
-                </select>
-
+                    </select>
+                    
                 <label>Select Worker</label>
-                <select value={newBooking.worker} onChange={e => setNewBooking({...newBooking, worker: e.target.value})} placeholder='Worker'>
+                <select onChange={e => setNewBooking({...newBooking, worker: e.target.value})} placeholder='Worker'>
+                    <option defaultValue> -- select an option -- </option>
                     <option value='worker'>Worker</option>
+                    <option value='worker2'>Worker2</option>
                 </select>
                 <input type='button' onClick={() => dispatch(createBooking(newBooking))} value='Create Booking' />
             </form>
 
-            <h2>{JSON.stringify(dateTime)}</h2>
-            <h2>{JSON.stringify(newBooking.service)}</h2>
-            <h2>{JSON.stringify(newBooking.worker)}</h2>
-            <h2>{JSON.stringify(newBooking.customer)}</h2>
+            {!booking.justBooked ?
+                <>
+                    <h2>{JSON.stringify(newBooking.dateTime)}</h2>
+                    <h2>{JSON.stringify(newBooking.service)}</h2>
+                    <h2>{JSON.stringify(newBooking.worker)}</h2>
+                    <h2>{JSON.stringify(newBooking.customer)}</h2>
+                </>
+
+                :
+
+                <h2>Your booking for {booking.booking.service} has been confirmed</h2>
+
+            }
         </div>
     )
 }

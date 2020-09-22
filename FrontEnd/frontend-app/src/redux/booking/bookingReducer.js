@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     error:'',
     booking: {},
+    justBooked: false,
     bookingsList: []
 }
 
@@ -23,6 +24,7 @@ const bookingReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 booking: action.payload,
+                justBooked:true,
                 error: ''
             }
 
@@ -31,6 +33,7 @@ const bookingReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.error,
+                justBooked: false,
                 booking: {}
             }
 
