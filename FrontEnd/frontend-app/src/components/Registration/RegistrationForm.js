@@ -43,7 +43,7 @@ export default class RegistrationForm extends Component {
             
         } else {
 
-            axios.post('http://localhost:8080/api/registration', user)
+            axios.post('http://localhost:8080/api/user/registration', user)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
