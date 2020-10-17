@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import DateTimePicker from 'react-datetime-picker';
 
 
-import { useSelector, useDispatch } from 'react-redux'
+import {useDispatch } from 'react-redux'
 import { setBookingType } from '../../redux'
 
 
@@ -18,26 +18,14 @@ import accounting from "../../public/images/accounting.jpg";
 import spa from "../../public/images/spa2.jpg";
 import tutor from "../../public/images/tutoring2.jpg";
 
-import { BARBER, LAWYER, TRAINER, ACCOUNTANT, SPA, TUTOR, NONE} from '../../redux/booking/bookingTypes'
+import { BARBER, LAWYER, TRAINER, ACCOUNTANT, SPA, TUTOR} from '../../redux/booking/bookingTypes'
 
-
-// import { useHistory } from "react-router-dom";
-
-// const history = useHistory();
-// const [showSearch, setShowSearch] = useState(false);
-
-
-// const [show, setShow] = useState(false);
-  
-//     <Button variant="primary" onClick={() => setShow(true)}>
-//           Custom Width Modal
-//         </Button>
 
 function Home() {
     const [value, onChange] = useState(new Date());
     const history = useHistory();
 
-    const bookingType = useSelector(state => state.booking.bookingType)
+    // const bookingType = useSelector(state => state.booking.bookingType)
 
     const dispatch = useDispatch()
 

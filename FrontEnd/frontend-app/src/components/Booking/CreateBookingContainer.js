@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { createBooking, createBookingRequest, setBookingType } from '../../redux'
+import { createBooking, clearBookingMessage } from '../../redux'
 import { useDispatch, useSelector } from 'react-redux'
 
 import DateTimePicker from 'react-datetime-picker';
@@ -21,6 +21,8 @@ function CreateBookingContainer() {
     
     // For selectingbooking. datelogin. and time
     const [bookingDateTime, setBookingDateTime] = useState(new Date());
+
+    let dateTime_local = ""
     
     const [newBooking, setNewBooking] = useState({
         dateTime: '2020-10-22T18:21:09.921Z',
@@ -41,10 +43,29 @@ function CreateBookingContainer() {
 
     const bookingType = useSelector(state => state.booking.booking_service)
     
+
+    // Refresh the booking 
     useEffect(() => {
-    console.log(bookingType);
-    dispatch(createBookingRequest());
+    dispatch(clearBookingMessage());
     },[bookingType])
+
+
+    // Sets date picker chosen value to booking object
+    useEffect(()=>{
+        dateTime_local = bookingDateTime.toISOString()
+        setNewBooking({ ...newBooking, dateTime: dateTime_local})
+        // console.log(dateTime_local)
+    },[bookingDateTime])
+
+
+
+
+    // Adjusts the Booking Type (service) on Change.
+    useEffect(()=>{
+        setNewBooking({ ...newBooking, service: service_type})
+        console.log(bookingType);
+    },[bookingType])
+
 
     if (bookingType !== NONE) {
       if (bookingType === LAWYER) {
@@ -127,8 +148,8 @@ function CreateBookingContainer() {
                 <input
                   type="button"
                   onClick={() => {
-                    setNewBooking({ ...newBooking, dateTime: bookingDateTime });
-                    setNewBooking({ ...newBooking, service: service_type})
+                    console.log(newBooking)
+                    dispatch(clearBookingMessage());
                     dispatch(createBooking(newBooking));
                   }}
                   value="Create Booking"
