@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DateTimePicker from 'react-datetime-picker';
 
+
+import { useSelector, useDispatch } from 'react-redux'
+import { setBookingType } from '../../redux'
+
+
 import "./Home.css";
 import Card from "./Card";
 import Popup from './Popup.js';
 
 import legal from "../../public/images/legal.jpg"
 import barber from "../../public/images/barber.jpg";
-import trainer from "../../public/images/personal_training.jpg";
+import trainer from "../../public/images/trainer2.jpg";
 import accounting from "../../public/images/accounting.jpg";
-import spa from "../../public/images/spa.jpg";
-import tutor from "../../public/images/tutoring.jpg";
+import spa from "../../public/images/spa2.jpg";
+import tutor from "../../public/images/tutoring2.jpg";
+
+import { BARBER, LAWYER, TRAINER, ACCOUNTANT, SPA, TUTOR, NONE} from '../../redux/booking/bookingTypes'
 
 
 // import { useHistory } from "react-router-dom";
@@ -29,6 +36,10 @@ import tutor from "../../public/images/tutoring.jpg";
 function Home() {
     const [value, onChange] = useState(new Date());
     const history = useHistory();
+
+    const bookingType = useSelector(state => state.booking.bookingType)
+
+    const dispatch = useDispatch()
 
     const [isClick, setIsClick] = useState(false);
     
@@ -58,7 +69,10 @@ function Home() {
             </div>*/}
             
 
-            <div onClick={() => history.push('/booking/create')}>
+            <div onClick={() => {
+                history.push('/booking/create')
+                dispatch(setBookingType(LAWYER))
+        }}>
                 <Card
                 src={legal}
                 title="Pearson Spector - Law Firm"
@@ -66,7 +80,10 @@ function Home() {
                 />
             </div>
 
-            <div onClick={() => history.push('/booking/create')}>
+            <div onClick={() => {
+                history.push('/booking/create')
+                dispatch(setBookingType(BARBER))
+            }}>
                 <Card
                 src={barber}
                 title="Bristol Barbers"
@@ -74,7 +91,10 @@ function Home() {
                 />
             </div>
         
-            <div onClick={() => history.push('/booking/create')}>
+            <div onClick={() => {
+                history.push('/booking/create')
+                dispatch(setBookingType(TRAINER))
+            }}>
                 <Card
                 src={trainer}
                 title="Personal Power"
@@ -85,7 +105,10 @@ function Home() {
 
       <div className="home__section" id="home__section">
 
-        <div onClick={() => history.push('/booking/create')}>
+        <div onClick={() => {
+            history.push('/booking/create')
+            dispatch(setBookingType(ACCOUNTANT))
+        }}>
             <Card
                 src={accounting}
                 title="Litt Accounting Inc."
@@ -93,7 +116,10 @@ function Home() {
                 />
         </div>
 
-        <div onClick={() => history.push('/booking/create')}> 
+        <div onClick={() => {
+            history.push('/booking/create')
+            dispatch(setBookingType(SPA))
+        }}> 
             <Card
                 src={spa}
                 title="Serenity Day Spa"
@@ -101,7 +127,10 @@ function Home() {
                 />
         </div>
         
-        <div onClick={() => history.push('/booking/create')}>
+        <div onClick={() => {
+            history.push('/booking/create')
+            dispatch(setBookingType(TUTOR))
+        }}>
             <Card
             src={tutor}
             title="LessonUp - Tutoring"

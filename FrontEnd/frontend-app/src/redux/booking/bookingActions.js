@@ -1,6 +1,8 @@
 import axios from 'axios'
-import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS } from './bookingTypes'
+import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS, SET_BOOKING_TYPE } from './bookingTypes'
 
+
+import { BARBER, LAWYER, TRAINER, ACCOUNTANT, SPA, TUTOR, NONE} from './bookingTypes'
 
 export const createBookingRequest = () => {
     return {
@@ -19,6 +21,13 @@ export const createBookingFailure = (error) => {
     return {
         type: CREATE_BOOKING_FAILURE,
         payload: error
+    }
+}
+
+export const setBookingType = (name) => {
+    return {
+        type: SET_BOOKING_TYPE,
+        payload: name
     }
 }
 

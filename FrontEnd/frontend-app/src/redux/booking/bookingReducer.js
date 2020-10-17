@@ -1,12 +1,15 @@
-import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS } from './bookingTypes'
+import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS, SET_BOOKING_TYPE } from './bookingTypes'
 
+
+import { BARBER, LAWYER, TRAINER, ACCOUNTANT, SPA, TUTOR, NONE} from './bookingTypes'
 
 const initialState = {
     loading: false,
     error:'',
     booking: {},
     justBooked: false,
-    bookingsList: []
+    bookingsList: [],
+    booking_service:NONE
 }
 
 const bookingReducer = (state = initialState, action) => {
@@ -16,7 +19,8 @@ const bookingReducer = (state = initialState, action) => {
         case CREATE_BOOKING_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                justBooked:false
             }
         
         case CREATE_BOOKING_SUCCESS:
@@ -35,6 +39,12 @@ const bookingReducer = (state = initialState, action) => {
                 error: action.error,
                 justBooked: false,
                 booking: {}
+            }
+        
+        case SET_BOOKING_TYPE:
+            return{
+                ...state,
+                booking_service:action.payload
             }
 
         default: return state
