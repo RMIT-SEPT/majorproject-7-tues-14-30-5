@@ -31,7 +31,7 @@ function CreateBookingContainer() {
 
     
     if (!loggedIn) {
-        history.pushState('/login')
+        history.push('/login')
     }
 
 
@@ -80,9 +80,10 @@ function CreateBookingContainer() {
       <div id="booking">
         <div id="service__title">
         <h2>{service_name}</h2>
-          <div id="booking__container">
+       </div>
+           <div id="booking__container">
             <div className="datePicker">
-              <div id="dateSelect">
+              <div id="dateSelect__bookingPage">
                 <DateTimePicker
                   onChange={setBookingDateTime}
                   value={bookingDateTime}
@@ -108,7 +109,7 @@ function CreateBookingContainer() {
 
             <div id="select__worker">
               <form id="select__worker">
-                <label>Select Worker</label>
+                <label>Select Worker  </label>
                 <select
                   onChange={(e) =>
                     setNewBooking({ ...newBooking, worker: e.target.value })
@@ -145,14 +146,14 @@ function CreateBookingContainer() {
                         <h2>{JSON.stringify(newBooking.customer)}</h2>*/}
                 </>
                 ) : (
-                <h2>
+                <h3>
                 Your booking for a {booking.booking.service.serviceName} has been confirmed
-                </h2>
+                </h3>
                 )
             }
             </div>
+
           </div>
-        </div>
       </div>
     );
 }

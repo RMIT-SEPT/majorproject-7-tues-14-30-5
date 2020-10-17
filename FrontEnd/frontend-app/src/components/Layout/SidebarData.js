@@ -26,12 +26,6 @@ export const SidebarData = [
     path: '/booking/history',
     icon: <HistoryRoundedIcon />,
     cName: 'nav-text'
-  },
-  {
-    title: 'Log Out',
-    path: '/team',
-    icon: <ExitToAppRoundedIcon/>,
-    cName: 'nav-text'
-  },
+  }
 
 ];

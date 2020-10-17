@@ -47,7 +47,7 @@ function Home() {
   return (
     <div className="home" id="home">
         <div className="datePicker">
-            <div id="dateSelect" >
+            <div id="dateSelect__home" >
             <DateTimePicker
                 onChange={onChange}
                 value={value}
