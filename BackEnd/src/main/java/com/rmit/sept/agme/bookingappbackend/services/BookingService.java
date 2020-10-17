@@ -6,10 +6,13 @@ import com.rmit.sept.agme.bookingappbackend.model.Booking;
 import com.rmit.sept.agme.bookingappbackend.model.User;
 import com.rmit.sept.agme.bookingappbackend.repositories.BookingRepository;
 import com.rmit.sept.agme.bookingappbackend.requests.CreateBookingRequest;
+import com.rmit.sept.agme.bookingappbackend.requests.GetBookingsByUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -52,5 +55,23 @@ public class BookingService {
         if (bookingRepository.existsById(bookingID)) {
             bookingRepository.deleteById(bookingID);
         }
+    }
+
+    public List<Booking> displayUserBooking(GetBookingsByUserRequest request) {
+
+        if (request.getUser() == null) {
+            throw new BookingException("User not found");
+        } else {
+
+            final String findByUser = "SELECT * FROM Booking WHERE USER = " + request.getUser();
+
+//            @Query(value = findByUser, nativeQuery = true);
+            List<Booking> bookingList = null;
+
+            return bookingList;
+        }
+
+
+
     }
 }
