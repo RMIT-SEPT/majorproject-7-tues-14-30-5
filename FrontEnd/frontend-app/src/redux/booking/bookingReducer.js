@@ -1,12 +1,15 @@
-import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS } from './bookingTypes'
+import { CREATE_BOOKING_FAILURE, CREATE_BOOKING_REQUEST, CREATE_BOOKING_SUCCESS, SET_BOOKING_TYPE, CLEAR_BOOKING_MESSAGE } from './bookingTypes'
 
+
+import {NONE} from './bookingTypes'
 
 const initialState = {
     loading: false,
     error:'',
     booking: {},
     justBooked: false,
-    bookingsList: []
+    bookingsList: [],
+    booking_service:NONE
 }
 
 const bookingReducer = (state = initialState, action) => {
@@ -35,6 +38,18 @@ const bookingReducer = (state = initialState, action) => {
                 error: action.error,
                 justBooked: false,
                 booking: {}
+            }
+        
+        case SET_BOOKING_TYPE:
+            return{
+                ...state,
+                booking_service:action.payload
+            }
+
+        case CLEAR_BOOKING_MESSAGE:
+            return{
+                ...state,
+                justBooked:false
             }
 
         default: return state

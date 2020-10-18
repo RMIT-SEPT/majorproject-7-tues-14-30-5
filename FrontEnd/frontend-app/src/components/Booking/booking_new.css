@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
   
-    background-color: #423f60;
+    background-color: rgb(235, 233, 233);
   }
   
 #booking__container {
@@ -16,16 +16,17 @@
     align-items: center;
     justify-content: center;
     height: 60vh;
-    width: 40vw;
-  
+    width: 55vw;
+    background-color:  #060A26;
+
     /* background: #FBFBFB; */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
   }
 
-  #dateSelect{
+  #dateSelect__bookingPage{
     background-color: aliceblue;
-    margin-top: -20% ;
+    margin-top: -10% ;
     margin-bottom: 20%;
   }
 
@@ -41,5 +42,18 @@
       margin-bottom: 20%;
   }
 
+#booking__message{
 
+  color: white;
+  
+  
+}
 
+#submit{
+  margin-bottom: 5%;
+}
+
+#service__title{
+   color: #060A26;
+   margin-bottom: 3%;
+}
