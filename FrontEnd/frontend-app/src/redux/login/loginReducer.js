@@ -20,7 +20,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: false,
-                user: {},
+                user: {}
             }
 
         case LOGIN_REQUEST:

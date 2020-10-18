@@ -6,7 +6,9 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
  public class User {
@@ -28,6 +30,10 @@ import java.util.Date;
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
+
+    // Worker only
+    @ElementCollection
+    private List<String> availableDate;
 
     public User() {}
 
@@ -95,6 +101,14 @@ import java.util.Date;
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void addAvailability(String date) {
+        availableDate.add(date);
+    }
+
+    public List<String> getAvailableDate() {
+        return availableDate;
     }
 
     @PrePersist

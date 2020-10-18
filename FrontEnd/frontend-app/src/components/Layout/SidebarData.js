@@ -7,7 +7,6 @@ import React from 'react';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 export const SidebarData = [
   {
     title: 'Home',
@@ -26,12 +25,6 @@ export const SidebarData = [
     path: '/booking/history',
     icon: <HistoryRoundedIcon />,
     cName: 'nav-text'
-  },
-  {
-    title: 'Log Out',
-    path: '/team',
-    icon: <ExitToAppRoundedIcon/>,
-    cName: 'nav-text'
-  },
+  }
 
 ];

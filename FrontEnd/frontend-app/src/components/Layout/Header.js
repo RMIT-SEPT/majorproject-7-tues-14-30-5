@@ -25,7 +25,7 @@ function Header() {
                 <button className="home__button" onClick={() => history.push('/')}>HOME</button>
                 {!loggedIn ? 
                     <button className="About__button" onClick={() => history.push('/login')}>LOGIN</button> :
-                    <button className="About__button" onClick={() => dispatch(logout)}>LOGOUT</button> 
+                    <button className="About__button" onClick={() => dispatch(logout())}>LOGOUT</button> 
                 }
                 
                 <button className="Contact__button" onClick={() => history.push('/contact')} >CONTACT</button>

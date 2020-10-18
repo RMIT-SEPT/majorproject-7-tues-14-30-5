@@ -1,3 +1,14 @@
 export const CREATE_BOOKING_REQUEST = 'CREATE_BOOKING_REQUEST'
 export const CREATE_BOOKING_SUCCESS = 'CREATE_BOOKING_SUCCESS'
 export const CREATE_BOOKING_FAILURE = 'CREATE_BOOKING_FAILURE'
+export const SET_BOOKING_TYPE = 'SET_BOOKING_TYPE'
+export const CLEAR_BOOKING_MESSAGE = 'CLEAR_BOOKING_MESSAGE'
+
+
+export const BARBER = 'BARBER'
+export const LAWYER = 'LAWYER'
+export const TRAINER = 'TRAINER'
+export const ACCOUNTANT = 'ACCOUNTANT'
+export const SPA = 'SPA'
+export const TUTOR = 'TUTOR'
+export const NONE = 'NONE'

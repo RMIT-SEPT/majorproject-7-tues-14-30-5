@@ -7,13 +7,6 @@ import {
 } from "./loginTypes"
 
 
-export const logout_confirm = () => {
-    sessionStorage.clear()
-    return {
-        type: LOGOUT
-    }
-}
-
 export const loginRequest = () => {
     return {
         type: LOGIN_REQUEST
@@ -50,7 +43,8 @@ export const login = (customerLogin) => {
 }
 
 export const logout = () => {
-    return (dispatch) => {
-        dispatch(logout_confirm)
+    sessionStorage.clear()
+    return {
+        type: LOGOUT
     }
 }
